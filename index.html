@@ -1,1871 +1,1929 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌸 Sakura Izakaya — Osaka's Heart</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Shippori+Mincho:wght@400;600;700&family=IM+Fell+DW+Pica:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>桜居酒屋 · Sakura Izakaya</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;600;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --ink: #1a0f0a;
-      --deep: #0d0d1a;
-      --amber: #e8a030;
-      --warm: #c96a1f;
-      --sakura: #e8879c;
-      --pale-sakura: #fce8ed;
-      --cream: #fdf5e8;
-      --smoke: rgba(255,255,255,0.06);
-      --lantern: #f5c842;
-      --indigo: #1e2340;
-      --panel: rgba(15,10,5,0.85);
-      --border: rgba(232,160,48,0.25);
+      --washi: #faf6f0;
+      --washi-deep: #f3ece0;
+      --washi-dark: #ede3d3;
+      --ink: #1c1410;
+      --ink-soft: #3a2e26;
+      --ink-muted: #7a6a5a;
+      --ink-ghost: #b0a090;
+      --sakura-pale: #fce8ee;
+      --sakura-light: #f5c8d4;
+      --sakura-mid: #e8a0b4;
+      --sakura-deep: #c4607a;
+      --sakura-rich: #9e3050;
+      --plum: #6e3050;
+      --moss: #5a6e50;
+      --moss-light: #a8b89a;
+      --gold: #c8a040;
+      --gold-pale: #e8d090;
+      --border: rgba(28, 20, 16, 0.1);
+      --border-soft: rgba(28, 20, 16, 0.06);
+      --shadow-sm: 0 2px 12px rgba(28, 20, 16, 0.06);
+      --shadow-md: 0 8px 32px rgba(28, 20, 16, 0.1);
+      --shadow-lg: 0 20px 60px rgba(28, 20, 16, 0.14);
+      --r: 3px;
+      --r-lg: 8px;
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1)
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px
+    }
 
     body {
-      font-family: 'Cormorant Garamond', serif;
-      background-color: var(--deep);
-      color: var(--cream);
-      min-height: 100vh;
+      font-family: 'Libre Baskerville', Georgia, serif;
+      background: var(--washi);
+      color: var(--ink);
       overflow-x: hidden;
-      cursor: default;
-    }
-
-    /* ── NOISE TEXTURE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      opacity: 0.4;
-    }
-
-    /* ── SAKURA PETALS ── */
-    #petals-canvas {
-      position: fixed; inset: 0; z-index: 1;
-      pointer-events: none;
-    }
-
-    /* ── WRAPPER ── */
-    .wrapper {
-      position: relative; z-index: 2;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* ── HERO HEADER ── */
-    header {
-      position: relative;
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      overflow: hidden;
-      padding: 60px 20px;
+      position: relative
     }
 
-    header::before {
+    body::after {
       content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,106,31,0.15) 0%, transparent 70%),
-                  radial-gradient(ellipse 60% 80% at 20% 80%, rgba(232,135,156,0.08) 0%, transparent 60%),
-                  radial-gradient(ellipse 50% 50% at 80% 20%, rgba(245,200,66,0.06) 0%, transparent 50%);
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.6
     }
 
-    .lantern-row {
-      display: flex; gap: 60px;
-      margin-bottom: 50px;
-      animation: swayRow 4s ease-in-out infinite;
+    #petal-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none
     }
 
-    @keyframes swayRow {
-      0%,100% { transform: translateX(0); }
-      50% { transform: translateX(6px); }
-    }
-
-    .lantern {
-      width: 36px; height: 58px;
-      background: radial-gradient(ellipse at 40% 35%, #fde68a, #f5a623 40%, #c06010 100%);
-      border-radius: 50% 50% 45% 45% / 40% 40% 60% 60%;
+    .site-wrap {
       position: relative;
-      box-shadow: 0 0 20px rgba(245,166,35,0.6), 0 0 50px rgba(245,166,35,0.25);
-      animation: lanternFlicker 2.5s ease-in-out infinite;
+      z-index: 2
     }
 
-    .lantern:nth-child(2) { animation-delay: 0.4s; transform: scale(0.85); }
-    .lantern:nth-child(3) { animation-delay: 0.8s; transform: scale(1.1); }
-    .lantern:nth-child(4) { animation-delay: 1.2s; transform: scale(0.9); }
-    .lantern:nth-child(5) { animation-delay: 0.2s; transform: scale(0.95); }
-
-    .lantern::before {
-      content: '🌸';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      font-size: 14px;
-      opacity: 0.7;
-    }
-
-    .lantern::after {
-      content: '';
-      position: absolute;
-      top: -12px; left: 50%; transform: translateX(-50%);
-      width: 2px; height: 12px;
-      background: var(--amber);
-    }
-
-    @keyframes lanternFlicker {
-      0%,100% { box-shadow: 0 0 20px rgba(245,166,35,0.6), 0 0 50px rgba(245,166,35,0.25); opacity: 1; }
-      50% { box-shadow: 0 0 30px rgba(245,166,35,0.8), 0 0 70px rgba(245,166,35,0.4); opacity: 0.92; }
-    }
-
-    .hero-kana {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(60px, 12vw, 130px);
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      background: linear-gradient(135deg, #fde68a 0%, #e8a030 35%, #e8879c 65%, #fde68a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 8px;
-      filter: drop-shadow(0 2px 20px rgba(232,160,48,0.4));
-    }
-
-    .hero-en {
-      font-family: 'Shippori Mincho', serif;
-      font-size: clamp(16px, 3vw, 26px);
-      font-weight: 400;
-      letter-spacing: 0.5em;
-      color: var(--amber);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .hero-tagline {
-      font-family: 'IM Fell DW Pica', serif;
-      font-style: italic;
-      font-size: clamp(14px, 2.5vw, 20px);
-      color: rgba(253,245,232,0.6);
-      letter-spacing: 0.1em;
-      margin-bottom: 50px;
-    }
-
-    /* ── DECORATIVE DIVIDER ── */
-    .divider {
-      display: flex; align-items: center; gap: 16px;
-      margin: 40px auto;
-      max-width: 400px;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1; height: 1px;
-      background: linear-gradient(to right, transparent, var(--amber), transparent);
-    }
-    .divider-icon { color: var(--sakura); font-size: 18px; }
-
-    /* ── NAV STRIP ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(10,8,15,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0;
-    }
-
-    .nav-inner {
-      max-width: 1100px;
+    .container {
+      max-width: 1140px;
       margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px;
+      padding: 0 32px
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      background: rgba(250, 246, 240, 0.88);
+      backdrop-filter: blur(16px) saturate(1.4);
+      border-bottom: 1px solid var(--border-soft);
+      transition: box-shadow 0.3s
+    }
+
+    .nav.scrolled {
+      box-shadow: var(--shadow-sm)
     }
 
     .nav-logo {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 22px;
-      color: var(--amber);
-      padding: 14px 0;
-      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none
+    }
+
+    .nav-logo-kana {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--sakura-rich);
+      letter-spacing: 0.08em
+    }
+
+    .nav-logo-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--sakura-mid);
+      border-radius: 50%
+    }
+
+    .nav-logo-en {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 11px;
+      font-style: italic;
+      color: var(--ink-muted);
+      letter-spacing: 0.12em
     }
 
     .nav-links {
-      display: flex; gap: 4px;
-      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      list-style: none
     }
 
     .nav-links a {
-      display: block;
-      padding: 16px 14px;
-      color: rgba(253,245,232,0.65);
-      text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.12em;
+      padding: 8px 14px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 11.5px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      font-family: 'Shippori Mincho', serif;
-      transition: color 0.2s;
-      position: relative;
+      color: var(--ink-muted);
+      text-decoration: none;
+      border-radius: var(--r);
+      transition: color 0.2s, background 0.2s
     }
 
-    .nav-links a::after {
+    .nav-links a:hover {
+      color: var(--sakura-rich);
+      background: var(--sakura-pale)
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .nav-cart {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      background: var(--ink);
+      color: var(--washi);
+      border: none;
+      border-radius: 40px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 11.5px;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s var(--ease-spring)
+    }
+
+    .nav-cart:hover {
+      background: var(--sakura-rich);
+      transform: scale(1.03)
+    }
+
+    .nav-cart-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: var(--sakura-mid);
+      border-radius: 50%;
+      font-size: 10px;
+      color: var(--ink);
+      font-weight: 700
+    }
+
+    @media (max-width:768px) {
+      .nav-links {
+        display: none
+      }
+
+      .container {
+        padding: 0 20px
+      }
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 32px 80px
+    }
+
+    .hero::before {
       content: '';
       position: absolute;
-      bottom: 10px; left: 50%; right: 50%;
-      height: 1px;
-      background: var(--sakura);
-      transition: left 0.25s, right 0.25s;
+      inset: 0;
+      background: radial-gradient(ellipse 90% 70% at 50% 0%, #f9eef4 0%, transparent 65%), radial-gradient(ellipse 60% 50% at 10% 60%, #f4ece0 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 90% 40%, #fde8ef 0%, transparent 55%), linear-gradient(170deg, #fdf8f2 0%, #faeef4 35%, #f6f0e8 65%, #faf6f0 100%);
+      z-index: 0
     }
 
-    .nav-links a:hover { color: var(--cream); }
-    .nav-links a:hover::after { left: 14px; right: 14px; }
-
-    .nav-cart-btn {
-      background: none; border: 1px solid var(--border);
-      color: var(--amber);
-      font-family: 'Shippori Mincho', serif;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 8px 18px;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.2s;
+    .hero-branch {
+      position: absolute;
+      top: 0;
+      right: -60px;
+      width: 55%;
+      max-width: 720px;
+      opacity: 0.18;
+      z-index: 0;
+      pointer-events: none;
+      transform-origin: top right;
+      animation: branchSway 8s ease-in-out infinite
     }
-    .nav-cart-btn:hover { background: rgba(232,160,48,0.1); border-color: var(--amber); }
 
-    /* ── SECTIONS ── */
-    section { padding: 80px 0; }
+    @keyframes branchSway {
 
-    .section-label {
-      font-family: 'Shippori Mincho', serif;
+      0%,
+      100% {
+        transform: rotate(0deg) translateY(0)
+      }
+
+      40% {
+        transform: rotate(1.5deg) translateY(-8px)
+      }
+
+      70% {
+        transform: rotate(-0.8deg) translateY(4px)
+      }
+    }
+
+    .hero-branch-left {
+      position: absolute;
+      bottom: -20px;
+      left: -40px;
+      width: 35%;
+      max-width: 400px;
+      opacity: 0.1;
+      z-index: 0;
+      pointer-events: none;
+      transform: scaleX(-1) rotate(-15deg);
+      animation: branchSway 10s ease-in-out infinite reverse
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 760px
+    }
+
+    .hero-eyebrow {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
       font-size: 11px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--sakura-mid);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.2s forwards
+    }
+
+    .hero-kana {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: clamp(64px, 11vw, 128px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, var(--ink) 0%, #3a2030 30%, var(--sakura-rich) 55%, var(--sakura-mid) 75%, var(--sakura-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-out) 0.35s forwards
+    }
+
+    .hero-title-en {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: clamp(16px, 2.8vw, 26px);
+      font-weight: 400;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.5s forwards
+    }
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+      margin: 24px auto 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.65s forwards
+    }
+
+    .hero-divider-line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--sakura-mid))
+    }
+
+    .hero-divider-line:last-child {
+      background: linear-gradient(to left, transparent, var(--sakura-mid))
+    }
+
+    .hero-divider-blossom {
+      font-size: 18px;
+      filter: drop-shadow(0 2px 6px rgba(200, 96, 120, 0.3))
+    }
+
+    .hero-tagline {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-muted);
+      max-width: 420px;
+      margin: 0 auto 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.75s forwards
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out) 0.9s forwards
+    }
+
+    .hero-vert {
+      position: absolute;
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 11px;
+      letter-spacing: 0.5em;
+      color: var(--sakura-mid);
+      writing-mode: vertical-rl;
+      opacity: 0.45;
+      z-index: 1;
+      animation: fadeIn 1.5s ease 1.2s both
+    }
+
+    .hero-vert-left {
+      left: 48px;
+      top: 50%;
+      transform: translateY(-50%)
+    }
+
+    .hero-vert-right {
+      right: 48px;
+      top: 50%;
+      transform: translateY(-50%)
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 0.45
+      }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 9px;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--sakura);
-      margin-bottom: 12px;
+      color: var(--ink-ghost);
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+      z-index: 1
     }
 
-    .section-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(28px, 5vw, 52px);
-      font-weight: 300;
-      color: var(--cream);
-      letter-spacing: 0.05em;
-      line-height: 1.2;
+    .scroll-hint-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--sakura-light), transparent);
+      animation: scrollPulse 2s ease-in-out infinite
     }
 
-    .section-title span { color: var(--amber); }
+    @keyframes scrollPulse {
 
-    /* ── USER STATUS BAR ── */
-    #user-bar {
-      background: rgba(30,20,10,0.7);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 10px 20px;
-      margin: 24px 0;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 10px;
-      font-size: 13px;
-      color: rgba(253,245,232,0.7);
-      font-family: 'Shippori Mincho', serif;
-      letter-spacing: 0.05em;
+      0%,
+      100% {
+        opacity: 1;
+        transform: scaleY(1)
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scaleY(0.6)
+      }
     }
 
-    #user-bar strong { color: var(--amber); }
-
-    .user-bar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-
-    /* ── BUTTONS ── */
     .btn {
-      display: inline-block;
-      padding: 12px 26px;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 30px;
+      border-radius: 40px;
       border: none;
-      border-radius: 2px;
-      transition: all 0.25s;
+      cursor: pointer;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       text-decoration: none;
+      transition: all 0.22s var(--ease-out);
+      white-space: nowrap
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--warm), var(--amber));
-      color: var(--ink);
-      font-weight: 700;
-      box-shadow: 0 4px 20px rgba(232,160,48,0.3);
+      background: var(--ink);
+      color: var(--washi)
     }
+
     .btn-primary:hover {
+      background: var(--sakura-rich);
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(232,160,48,0.5);
+      box-shadow: 0 8px 24px rgba(158, 48, 80, 0.25)
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--border)
+    }
+
+    .btn-outline:hover {
+      border-color: var(--sakura-mid);
+      color: var(--sakura-rich);
+      background: var(--sakura-pale)
+    }
+
+    .btn-sakura {
+      background: linear-gradient(135deg, var(--sakura-light), var(--sakura-mid));
+      color: var(--ink)
+    }
+
+    .btn-sakura:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(196, 96, 122, 0.3)
     }
 
     .btn-ghost {
       background: transparent;
-      color: var(--cream);
-      border: 1px solid var(--border);
+      color: var(--ink-muted);
+      border: 1px solid transparent
     }
-    .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
 
-    .btn-sakura {
-      background: rgba(232,135,156,0.15);
-      color: var(--sakura);
-      border: 1px solid rgba(232,135,156,0.3);
+    .btn-ghost:hover {
+      color: var(--sakura-rich);
+      background: var(--sakura-pale)
     }
-    .btn-sakura:hover { background: rgba(232,135,156,0.25); }
-
-    .btn-danger {
-      background: rgba(180,40,40,0.2);
-      color: #e87070;
-      border: 1px solid rgba(180,40,40,0.3);
-    }
-    .btn-danger:hover { background: rgba(180,40,40,0.35); }
 
     .btn-sm {
-      padding: 7px 14px;
-      font-size: 11px;
+      padding: 8px 18px;
+      font-size: 10.5px
     }
 
-    /* ── MENU GRID ── */
+    .btn-danger {
+      background: transparent;
+      color: #b04040;
+      border: 1px solid rgba(176, 64, 64, 0.25)
+    }
+
+    .btn-danger:hover {
+      background: rgba(176, 64, 64, 0.08)
+    }
+
+    .section {
+      padding: 100px 0
+    }
+
+    .section+.section {
+      border-top: 1px solid var(--border-soft)
+    }
+
+    .section-header {
+      margin-bottom: 56px
+    }
+
+    .section-label {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: var(--sakura-mid);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--sakura-mid)
+    }
+
+    .section-title {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+      letter-spacing: 0.01em
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--sakura-rich)
+    }
+
+    .section-kana {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 11px;
+      color: var(--ink-ghost);
+      letter-spacing: 0.4em;
+      margin-top: 6px
+    }
+
+    .user-bar {
+      background: linear-gradient(135deg, var(--sakura-pale) 0%, var(--washi-deep) 100%);
+      border: 1px solid var(--sakura-light);
+      border-radius: var(--r-lg);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0
+    }
+
+    .user-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 13px;
+      color: var(--ink-soft)
+    }
+
+    .user-bar-avatar {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--sakura-light), var(--sakura-mid));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0
+    }
+
+    .user-bar-name {
+      font-weight: 500;
+      color: var(--ink)
+    }
+
+    .user-bar-tag {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--sakura-pale);
+      border: 1px solid var(--sakura-light);
+      color: var(--sakura-rich);
+      padding: 2px 8px;
+      border-radius: 20px
+    }
+
+    .user-bar-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
     .menu-tabs {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin-bottom: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-soft)
     }
 
     .menu-tab {
-      padding: 10px 22px;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border: 1px solid var(--border);
+      padding: 9px 22px;
+      border: 1.5px solid var(--border);
       background: transparent;
-      color: rgba(253,245,232,0.55);
+      border-radius: 40px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
       cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.2s;
+      transition: all 0.2s
     }
 
-    .menu-tab:hover { color: var(--cream); border-color: rgba(232,160,48,0.5); }
+    .menu-tab:hover {
+      color: var(--sakura-rich);
+      border-color: var(--sakura-light)
+    }
 
     .menu-tab.active {
-      background: rgba(232,160,48,0.1);
-      border-color: var(--amber);
-      color: var(--amber);
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--washi)
     }
 
-    .menu-panel { display: none; }
-    .menu-panel.active { display: block; }
+    .menu-panel {
+      display: none
+    }
+
+    .menu-panel.active {
+      display: block
+    }
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 18px
     }
 
     .menu-card {
-      background: rgba(15,10,5,0.6);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 22px;
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--r-lg);
+      padding: 24px;
       position: relative;
       overflow: hidden;
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      transition: transform 0.25s var(--ease-spring), box-shadow 0.25s;
+      cursor: default
     }
 
     .menu-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at top left, rgba(232,160,48,0.05), transparent 60%);
+      content: '🌸';
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      font-size: 72px;
+      opacity: 0;
+      transform: rotate(15deg) scale(0.8);
+      transition: opacity 0.3s, transform 0.35s var(--ease-spring);
       pointer-events: none;
+      filter: saturate(0.3) brightness(1.1)
     }
 
     .menu-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(232,160,48,0.45);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md)
+    }
+
+    .menu-card:hover::before {
+      opacity: 0.12;
+      transform: rotate(15deg) scale(1)
+    }
+
+    .menu-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px
     }
 
     .menu-card-emoji {
-      font-size: 28px;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .menu-card-name {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--cream);
-      margin-bottom: 6px;
-      letter-spacing: 0.03em;
-    }
-
-    .menu-card-desc {
-      font-size: 12.5px;
-      color: rgba(253,245,232,0.5);
-      line-height: 1.6;
-      margin-bottom: 14px;
-      font-style: italic;
-    }
-
-    .menu-card-footer {
-      display: flex; align-items: center; justify-content: space-between;
+      font-size: 30px;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1))
     }
 
     .menu-card-price {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 16px;
-      color: var(--amber);
-      font-weight: 600;
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--sakura-rich)
     }
 
     .menu-card-price small {
       font-size: 10px;
-      font-family: 'Shippori Mincho', serif;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
       letter-spacing: 0.1em;
-      opacity: 0.7;
+      color: var(--ink-ghost);
+      font-weight: 400
+    }
+
+    .menu-card-name {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 7px;
+      line-height: 1.4
+    }
+
+    .menu-card-desc {
+      font-size: 12.5px;
+      line-height: 1.75;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-bottom: 18px
+    }
+
+    .menu-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px
     }
 
     .alcoholic-tag {
-      font-family: 'Shippori Mincho', serif;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
       font-size: 9px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      background: rgba(180,40,40,0.2);
-      color: #e87070;
-      border: 1px solid rgba(180,40,40,0.3);
-      padding: 2px 7px;
+      background: #fce8e0;
+      border: 1px solid #f0c0a0;
+      color: #b06040;
+      padding: 3px 8px;
       border-radius: 20px;
+      flex: 1
     }
 
-    /* ── DEALS GRID ── */
     .deals-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+      gap: 18px
     }
 
     .deal-card {
-      background: rgba(15,10,5,0.6);
-      border: 1px solid rgba(232,135,156,0.2);
-      border-radius: 4px;
-      padding: 24px;
+      background: linear-gradient(145deg, #fff 0%, var(--sakura-pale) 100%);
+      border: 1px solid var(--sakura-light);
+      border-radius: var(--r-lg);
+      padding: 28px;
       position: relative;
-      transition: transform 0.25s, border-color 0.25s;
+      overflow: hidden;
+      transition: transform 0.25s var(--ease-spring), box-shadow 0.25s
+    }
+
+    .deal-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--sakura-light), var(--sakura-mid), var(--sakura-light));
+      opacity: 0;
+      transition: opacity 0.25s
     }
 
     .deal-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(232,135,156,0.45);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md)
+    }
+
+    .deal-card:hover::after {
+      opacity: 1
     }
 
     .deal-badge {
-      position: absolute; top: -10px; right: 18px;
-      background: linear-gradient(135deg, var(--sakura), var(--warm));
-      color: white;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 10px;
-      letter-spacing: 0.1em;
+      display: inline-block;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 3px 12px;
+      background: var(--ink);
+      color: var(--washi);
+      padding: 4px 12px;
       border-radius: 20px;
+      margin-bottom: 14px
     }
 
-    .deal-card-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 15px;
+    .deal-title {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 16px;
       font-weight: 600;
-      color: var(--sakura);
-      margin-bottom: 6px;
+      color: var(--ink);
+      margin-bottom: 8px
     }
 
-    .deal-card-desc {
+    .deal-desc {
       font-size: 13px;
-      color: rgba(253,245,232,0.55);
-      line-height: 1.6;
-      margin-bottom: 14px;
+      line-height: 1.75;
+      color: var(--ink-muted);
       font-style: italic;
+      margin-bottom: 20px
     }
 
-    /* ── CART SIDEBAR ── */
+    .order-card {
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--r-lg);
+      padding: 22px 26px;
+      margin-bottom: 14px;
+      transition: box-shadow 0.2s
+    }
+
+    .order-card:hover {
+      box-shadow: var(--shadow-sm)
+    }
+
+    .order-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px
+    }
+
+    .order-code {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 13px;
+      color: var(--sakura-rich);
+      letter-spacing: 0.06em
+    }
+
+    .order-date {
+      font-size: 11px;
+      color: var(--ink-ghost);
+      margin-top: 2px
+    }
+
+    .order-status {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid
+    }
+
+    .status-pending {
+      color: #a07020;
+      border-color: #f0d080;
+      background: #fdf5d0
+    }
+
+    .status-preparing {
+      color: #204080;
+      border-color: #a0c0f0;
+      background: #e8f0fc
+    }
+
+    .status-ready {
+      color: #206040;
+      border-color: #80d0a0;
+      background: #e0f8ec
+    }
+
+    .status-completed {
+      color: #606060;
+      border-color: #d0d0d0;
+      background: #f4f4f4
+    }
+
+    .status-cancelled {
+      color: #803030;
+      border-color: #f0a0a0;
+      background: #fce8e8
+    }
+
+    .status-cod {
+      color: var(--sakura-rich);
+      border-color: var(--sakura-light);
+      background: var(--sakura-pale)
+    }
+
+    .order-items-text {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+      font-style: italic
+    }
+
+    .order-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-soft);
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 16px
+    }
+
+    .order-total-label {
+      color: var(--ink-muted);
+      font-size: 12px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase
+    }
+
+    .order-total-amt {
+      color: var(--sakura-rich);
+      font-weight: 700
+    }
+
+    .admin-wrap {
+      background: linear-gradient(145deg, #f8f4fc, #fceef4);
+      border: 1px solid rgba(110, 48, 80, 0.15);
+      border-radius: var(--r-lg);
+      padding: 28px
+    }
+
+    .admin-order-row {
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--r);
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
     #cart-overlay {
-      position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(4px);
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(28, 20, 16, 0.4);
+      backdrop-filter: blur(6px);
       display: none;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.3s
     }
 
     #cart-overlay.open {
-      display: flex; justify-content: flex-end;
-      opacity: 1;
+      display: flex;
+      justify-content: flex-end;
+      opacity: 1
     }
 
     #cart-panel {
-      width: 420px; max-width: 100vw;
-      background: #0f0a05;
+      width: 440px;
+      max-width: 100vw;
+      background: var(--washi);
       border-left: 1px solid var(--border);
       height: 100%;
-      overflow-y: auto;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
       transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      transition: transform 0.38s var(--ease-out)
     }
 
-    #cart-overlay.open #cart-panel { transform: translateX(0); }
+    #cart-overlay.open #cart-panel {
+      transform: translateX(0)
+    }
 
     .cart-header {
-      padding: 24px;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 28px 20px;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between
     }
 
     .cart-title {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Old Mincho', serif;
       font-size: 20px;
-      color: var(--amber);
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .cart-kana {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--sakura-mid);
+      font-weight: 400
     }
 
     .cart-close {
-      background: none; border: none;
-      color: rgba(253,245,232,0.5);
-      font-size: 22px; cursor: pointer;
-      transition: color 0.2s;
+      width: 36px;
+      height: 36px;
+      background: var(--washi-dark);
+      border: none;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s
     }
-    .cart-close:hover { color: var(--cream); }
 
-    #cart-items-list {
+    .cart-close:hover {
+      background: var(--sakura-pale);
+      color: var(--sakura-rich)
+    }
+
+    .cart-body {
       flex: 1;
-      padding: 20px 24px;
       overflow-y: auto;
+      padding: 20px 28px
     }
 
     .cart-item {
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: flex-start; gap: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-soft)
     }
 
-    .cart-item-info { flex: 1; }
+    .cart-item-icon {
+      font-size: 24px;
+      width: 40px;
+      height: 40px;
+      background: var(--washi-deep);
+      border-radius: var(--r);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .cart-item-info {
+      flex: 1
+    }
 
     .cart-item-name {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 13.5px;
       font-weight: 600;
-      color: var(--cream);
-      margin-bottom: 2px;
+      color: var(--ink);
+      margin-bottom: 3px
     }
 
     .cart-item-price {
       font-size: 12px;
-      color: var(--amber);
+      color: var(--sakura-rich);
+      font-family: 'Zen Kaku Gothic New', sans-serif
     }
 
-    .cart-item-qty {
-      display: flex; align-items: center; gap: 8px;
+    .cart-qty {
+      display: flex;
+      align-items: center;
+      gap: 10px
     }
 
     .qty-btn {
-      width: 26px; height: 26px;
-      background: rgba(232,160,48,0.1);
+      width: 28px;
+      height: 28px;
+      background: var(--washi-deep);
       border: 1px solid var(--border);
-      color: var(--amber);
-      font-size: 16px;
+      border-radius: 50%;
       cursor: pointer;
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       line-height: 1;
-      transition: background 0.2s;
+      transition: all 0.15s
     }
-    .qty-btn:hover { background: rgba(232,160,48,0.25); }
+
+    .qty-btn:hover {
+      background: var(--sakura-pale);
+      border-color: var(--sakura-light);
+      color: var(--sakura-rich)
+    }
 
     .qty-num {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 14px;
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 15px;
       min-width: 20px;
       text-align: center;
-      color: var(--cream);
+      color: var(--ink)
     }
 
     .cart-footer {
-      padding: 20px 24px;
-      border-top: 1px solid var(--border);
+      padding: 20px 28px 28px;
+      border-top: 1px solid var(--border-soft);
+      background: linear-gradient(to bottom, var(--washi), var(--washi-deep))
     }
 
-    .cart-subtotal {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 18px;
-      color: var(--cream);
-      margin-bottom: 16px;
-      display: flex; justify-content: space-between;
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      font-family: 'Zen Old Mincho', serif
     }
 
-    .cart-subtotal span { color: var(--amber); }
+    .cart-total-label {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      color: var(--ink-muted)
+    }
 
-    /* ── CHECKOUT MODAL ── */
-    #checkout-modal {
-      position: fixed; inset: 0; z-index: 300;
-      background: rgba(0,0,0,0.85);
+    .cart-total-amt {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--sakura-rich)
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 600;
+      background: rgba(28, 20, 16, 0.5);
       backdrop-filter: blur(8px);
-      display: none; align-items: center; justify-content: center;
-      padding: 20px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px
     }
-    #checkout-modal.open { display: flex; }
 
-    .modal-panel {
-      background: #0f0a05;
+    .modal-overlay.open {
+      display: flex
+    }
+
+    .modal {
+      background: var(--washi);
+      border-radius: 12px;
       border: 1px solid var(--border);
-      border-radius: 6px;
-      width: 100%; max-width: 540px;
-      max-height: 90vh;
+      width: 100%;
+      max-width: 540px;
+      max-height: 92vh;
       overflow-y: auto;
-      padding: 36px;
+      box-shadow: var(--shadow-lg);
+      animation: modalIn 0.35s var(--ease-spring)
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0)
+      }
+    }
+
+    .modal-header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between
     }
 
     .modal-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 24px;
-      color: var(--amber);
-      margin-bottom: 24px;
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .modal-body {
+      padding: 28px 32px
+    }
+
+    .modal-footer {
+      padding: 0 32px 28px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap
     }
 
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 18px
     }
 
     .form-label {
       display: block;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 11px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 10.5px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(253,245,232,0.6);
-      margin-bottom: 7px;
+      color: var(--ink-muted);
+      margin-bottom: 8px
     }
 
-    .form-input {
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 10px 14px;
-      color: var(--cream);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-input:focus { border-color: var(--amber); }
-
+    .form-input,
     .form-select {
       width: 100%;
-      background: rgba(15,10,5,0.9);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 10px 14px;
-      color: var(--cream);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      padding: 11px 14px;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 14px;
+      color: var(--ink);
       outline: none;
-      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s
     }
 
-    .payment-methods {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 8px;
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--sakura-mid);
+      box-shadow: 0 0 0 3px rgba(196, 96, 122, 0.08)
     }
 
-    .payment-opt {
-      padding: 12px 8px;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      text-align: center;
-      cursor: pointer;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 12px;
-      letter-spacing: 0.05em;
-      color: rgba(253,245,232,0.6);
-      transition: all 0.2s;
+    .form-select {
+      cursor: pointer
     }
-    .payment-opt:hover { border-color: rgba(232,160,48,0.5); color: var(--cream); }
-    .payment-opt.selected { border-color: var(--amber); background: rgba(232,160,48,0.1); color: var(--amber); }
 
-    .payment-opt-icon { font-size: 20px; display: block; margin-bottom: 4px; }
-
-    .checkout-total-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 0;
-      border-top: 1px solid var(--border);
-      font-family: 'Noto Serif JP', serif;
-      font-size: 20px;
-      color: var(--cream);
-      margin-top: 8px;
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
     }
-    .checkout-total-row .total-amt { color: var(--amber); }
-
-    /* ── AUTH MODAL ── */
-    #auth-modal {
-      position: fixed; inset: 0; z-index: 300;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
-      display: none; align-items: center; justify-content: center;
-      padding: 20px;
-    }
-    #auth-modal.open { display: flex; }
 
     .auth-tabs {
-      display: flex; gap: 0;
-      margin-bottom: 28px;
-      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 28px
     }
 
     .auth-tab {
-      padding: 10px 24px;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 12px;
+      flex: 1;
+      padding: 12px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 11px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      border: none; background: none;
-      color: rgba(253,245,232,0.4);
+      border: none;
+      background: none;
       cursor: pointer;
+      color: var(--ink-ghost);
       border-bottom: 2px solid transparent;
       margin-bottom: -1px;
-      transition: all 0.2s;
+      transition: all 0.2s
     }
-    .auth-tab.active { color: var(--amber); border-bottom-color: var(--amber); }
 
-    /* ── OUTPUT/NOTIFICATION ── */
+    .auth-tab:hover {
+      color: var(--ink-muted)
+    }
+
+    .auth-tab.active {
+      color: var(--sakura-rich);
+      border-bottom-color: var(--sakura-mid)
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 8px
+    }
+
+    .payment-opt {
+      padding: 14px 8px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      text-align: center;
+      cursor: pointer;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      transition: all 0.2s
+    }
+
+    .payment-opt:hover {
+      border-color: var(--sakura-light);
+      color: var(--ink)
+    }
+
+    .payment-opt.selected {
+      border-color: var(--sakura-mid);
+      background: var(--sakura-pale);
+      color: var(--sakura-rich)
+    }
+
+    .payment-opt-icon {
+      font-size: 22px;
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .checkout-summary {
+      background: var(--washi-deep);
+      border-radius: var(--r);
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 13px
+    }
+
+    .checkout-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      color: var(--ink-muted)
+    }
+
+    .checkout-line .amt {
+      color: var(--ink);
+      font-family: 'Zen Old Mincho', serif
+    }
+
+    .checkout-line.discount .amt {
+      color: var(--moss)
+    }
+
+    .checkout-total-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0 0;
+      margin-top: 8px;
+      border-top: 1px solid var(--border);
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 20px
+    }
+
+    .checkout-total-line .total-amt {
+      color: var(--sakura-rich);
+      font-weight: 700
+    }
+
+    .success-view {
+      text-align: center;
+      padding: 20px 0 10px
+    }
+
+    .success-icon {
+      font-size: 60px;
+      display: block;
+      margin-bottom: 20px;
+      animation: bounceIn 0.6s var(--ease-spring)
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0) rotate(-15deg);
+        opacity: 0
+      }
+
+      60% {
+        transform: scale(1.2) rotate(3deg)
+      }
+
+      100% {
+        transform: scale(1) rotate(0);
+        opacity: 1
+      }
+    }
+
+    .success-title {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px
+    }
+
+    .success-code {
+      display: inline-block;
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 17px;
+      color: var(--sakura-rich);
+      background: var(--sakura-pale);
+      border: 1px solid var(--sakura-light);
+      border-radius: 6px;
+      padding: 10px 24px;
+      letter-spacing: 0.08em;
+      margin: 14px 0
+    }
+
+    .success-sub {
+      font-size: 13px;
+      color: var(--ink-muted);
+      font-style: italic;
+      line-height: 1.8;
+      margin-bottom: 28px
+    }
+
     #toast-container {
       position: fixed;
-      bottom: 30px; right: 30px;
-      z-index: 500;
-      display: flex; flex-direction: column; gap: 10px;
-      align-items: flex-end;
+      bottom: 28px;
+      right: 28px;
+      z-index: 900;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 8px;
+      align-items: flex-end
     }
 
     .toast {
-      background: rgba(15,10,5,0.95);
-      border: 1px solid var(--border);
-      border-radius: 4px;
+      background: var(--ink);
+      color: var(--washi);
+      border-radius: 6px;
       padding: 12px 18px;
-      font-family: 'Shippori Mincho', serif;
-      font-size: 13px;
-      color: var(--cream);
-      max-width: 300px;
-      animation: toastIn 0.3s ease, toastOut 0.3s ease 3.7s forwards;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 12.5px;
+      letter-spacing: 0.04em;
+      max-width: 320px;
+      box-shadow: var(--shadow-md);
+      animation: toastIn 0.3s var(--ease-spring), toastOut 0.3s ease 3.7s forwards;
+      display: flex;
+      align-items: center;
+      gap: 10px
     }
 
-    .toast.success { border-color: rgba(100,200,100,0.4); color: #90e090; }
-    .toast.error { border-color: rgba(200,80,80,0.4); color: #e09090; }
-    .toast.info { border-color: rgba(232,160,48,0.4); color: var(--amber); }
-
-    @keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(20px); } }
-
-    /* ── ORDER HISTORY ── */
-    .order-card {
-      background: rgba(15,10,5,0.6);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 20px;
-      margin-bottom: 16px;
+    .toast.success {
+      background: #204828;
+      border-left: 3px solid #60c870
     }
 
-    .order-card-header {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 14px;
+    .toast.error {
+      background: #481820;
+      border-left: 3px solid #e06060
     }
 
-    .order-code {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 12px;
-      color: var(--amber);
-      letter-spacing: 0.08em;
+    .toast.info {
+      background: var(--ink);
+      border-left: 3px solid var(--sakura-mid)
     }
 
-    .order-status {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 20px;
-      border: 1px solid;
-    }
-    .status-pending { color: #e8d060; border-color: rgba(232,208,96,0.3); background: rgba(232,208,96,0.08); }
-    .status-preparing { color: #60b8e8; border-color: rgba(96,184,232,0.3); background: rgba(96,184,232,0.08); }
-    .status-ready { color: #60e890; border-color: rgba(96,232,144,0.3); background: rgba(96,232,144,0.08); }
-    .status-completed { color: #a0a0a0; border-color: rgba(160,160,160,0.3); background: rgba(160,160,160,0.08); }
-    .status-cancelled { color: #e06060; border-color: rgba(224,96,96,0.3); background: rgba(224,96,96,0.08); }
-    .status-cod { color: var(--sakura); border-color: rgba(232,135,156,0.3); background: rgba(232,135,156,0.08); }
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateX(16px) scale(0.95)
+      }
 
-    /* ── ADMIN SECTION ── */
-    .admin-panel {
-      background: rgba(60,20,80,0.2);
-      border: 1px solid rgba(160,80,220,0.25);
-      border-radius: 4px;
-      padding: 24px;
-      margin-top: 20px;
+      to {
+        opacity: 1;
+        transform: translateX(0) scale(1)
+      }
     }
 
-    /* ── INFO SECTION ── */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+    @keyframes toastOut {
+      from {
+        opacity: 1
+      }
+
+      to {
+        opacity: 0
+      }
     }
 
-    @media (max-width: 700px) {
-      .info-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .menu-grid { grid-template-columns: 1fr; }
-      .payment-methods { grid-template-columns: 1fr 1fr; }
-      #cart-panel { width: 100vw; }
-    }
-
-    .info-block-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--sakura);
-      margin-bottom: 10px;
-    }
-
-    .info-block-body {
-      font-size: 15px;
-      color: rgba(253,245,232,0.7);
-      line-height: 1.85;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 50px 0 40px;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .footer-kana {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 32px;
-      font-weight: 300;
-      color: var(--amber);
-      opacity: 0.4;
-      letter-spacing: 0.3em;
-    }
-
-    .footer-copy {
-      font-size: 12px;
-      color: rgba(253,245,232,0.25);
-      font-family: 'Shippori Mincho', serif;
-      letter-spacing: 0.1em;
-      margin-top: 10px;
-    }
-
-    /* ── ORDER SUCCESS ── */
-    .order-success {
-      text-align: center; padding: 40px 20px;
-    }
-
-    .order-success-icon { font-size: 64px; margin-bottom: 20px; display: block; }
-
-    .order-success-code {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 22px;
-      color: var(--amber);
-      letter-spacing: 0.1em;
-      background: rgba(232,160,48,0.1);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 14px 24px;
-      display: inline-block;
-      margin: 16px 0;
-    }
-
-    /* ── HERO BUTTONS ── */
-    .hero-actions {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    /* ── EMPTY STATES ── */
     .empty-state {
       text-align: center;
       padding: 60px 20px;
-      color: rgba(253,245,232,0.3);
+      color: var(--ink-ghost)
     }
-    .empty-state-icon { font-size: 48px; margin-bottom: 16px; display: block; }
-    .empty-state-text { font-family: 'Shippori Mincho', serif; font-size: 14px; letter-spacing: 0.1em; }
 
-    /* SCROLL REVEAL */
+    .empty-state-icon {
+      font-size: 48px;
+      display: block;
+      margin-bottom: 14px;
+      opacity: 0.6
+    }
+
+    .empty-state-text {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--ink-ghost)
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px
+    }
+
+    @media (max-width:640px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 32px
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr
+      }
+
+      .deals-grid {
+        grid-template-columns: 1fr
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .payment-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .info-block-label {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--sakura-mid);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .info-block-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--sakura-light), transparent)
+    }
+
+    .info-block-body {
+      font-size: 14.5px;
+      line-height: 2;
+      color: var(--ink-soft)
+    }
+
+    .footer {
+      padding: 56px 0 40px;
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+      background: linear-gradient(to bottom, var(--washi) 0%, var(--washi-deep) 100%)
+    }
+
+    .footer-kana {
+      font-family: 'Zen Old Mincho', serif;
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      background: linear-gradient(135deg, var(--sakura-light), var(--sakura-mid));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.35;
+      margin-bottom: 10px
+    }
+
+    .footer-copy {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--ink-ghost)
+    }
+
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(22px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out)
     }
-    .reveal.visible {
+
+    .reveal.in {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0)
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s
     }
   </style>
 </head>
+
 <body>
+  <canvas id="petal-canvas"></canvas>
+  <div id="toast-container"></div>
 
-<!-- Sakura petals canvas -->
-<canvas id="petals-canvas"></canvas>
-
-<!-- TOAST NOTIFICATIONS -->
-<div id="toast-container"></div>
-
-<!-- CART OVERLAY -->
-<div id="cart-overlay">
-  <div id="cart-panel">
-    <div class="cart-header">
-      <div class="cart-title">🛒 お買い物カゴ</div>
-      <button class="cart-close" id="cart-close-btn">✕</button>
-    </div>
-    <div id="cart-items-list">
-      <div class="empty-state">
-        <span class="empty-state-icon">🛒</span>
-        <div class="empty-state-text">Your cart is empty</div>
+  <!-- CART OVERLAY -->
+  <div id="cart-overlay">
+    <div id="cart-panel">
+      <div class="cart-header">
+        <div class="cart-title">🌸 Cart <span class="cart-kana">お買い物</span></div>
+        <button class="cart-close" id="cart-close-btn">✕</button>
       </div>
-    </div>
-    <div class="cart-footer" id="cart-footer" style="display:none;">
-      <div class="cart-subtotal">
-        <span>Subtotal</span>
-        <span id="cart-total-display">¥0</span>
+      <div class="cart-body" id="cart-body">
+        <div class="empty-state"><span class="empty-state-icon">🛒</span>
+          <div class="empty-state-text">Your cart is empty</div>
+        </div>
       </div>
-      <button class="btn btn-primary" style="width:100%;" id="cart-checkout-btn">Proceed to Checkout</button>
+      <div class="cart-footer" id="cart-footer" style="display:none">
+        <div class="cart-total">
+          <span class="cart-total-label">Subtotal</span>
+          <span class="cart-total-amt" id="cart-total-display">¥0</span>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center" id="cart-checkout-btn">Proceed to
+          Checkout</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- CHECKOUT MODAL -->
-<div id="checkout-modal">
-  <div class="modal-panel" id="checkout-panel">
-    <div class="modal-title">💳 Checkout</div>
-    <div id="checkout-content"></div>
-  </div>
-</div>
-
-<!-- AUTH MODAL -->
-<div id="auth-modal">
-  <div class="modal-panel">
-    <div class="auth-tabs">
-      <button class="auth-tab active" id="tab-login-btn">Login</button>
-      <button class="auth-tab" id="tab-register-btn">Register</button>
-      <button class="auth-tab" id="tab-guest-btn">Guest</button>
-    </div>
-    <div id="auth-content">
-      <!-- Filled by JS -->
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">💳 Checkout</div>
+        <button class="cart-close" onclick="closeModal('checkout-modal')">✕</button>
+      </div>
+      <div class="modal-body" id="checkout-body"></div>
     </div>
   </div>
-</div>
 
-<!-- ======================== HERO ======================== -->
-<header id="home">
-  <div class="lantern-row">
-    <div class="lantern"></div>
-    <div class="lantern"></div>
-    <div class="lantern"></div>
-    <div class="lantern"></div>
-    <div class="lantern"></div>
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">🌸 Welcome</div>
+        <button class="cart-close" onclick="closeModal('auth-modal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-login-btn">Login</button>
+          <button class="auth-tab" id="tab-register-btn">Register</button>
+          <button class="auth-tab" id="tab-guest-btn">Continue as Guest</button>
+        </div>
+        <div id="auth-content"></div>
+      </div>
+    </div>
   </div>
 
-  <div style="position:relative;">
-    <div class="hero-kana">桜居酒屋</div>
-    <div class="hero-en">Sakura Izakaya</div>
-    <div class="hero-tagline">Osaka's heart, one takoyaki at a time</div>
-
-    <div class="divider"><div class="divider-icon">🌸</div></div>
-
-    <div class="hero-actions">
-      <button class="btn btn-primary" onclick="scrollToMenu()">Browse Menu</button>
-      <button class="btn btn-ghost" onclick="openAuthModal()">Login / Register</button>
-    </div>
-  </div>
-</header>
-
-<!-- ======================== NAV ======================== -->
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">🌸 桜</div>
-    <ul class="nav-links">
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#deals">Deals</a></li>
-      <li><a href="#merchandise">Merch</a></li>
-      <li><a href="#orders">My Orders</a></li>
-      <li><a href="#info">Info</a></li>
-    </ul>
-    <button class="nav-cart-btn" id="nav-cart-btn">🛒 Cart (<span id="nav-cart-count">0</span>)</button>
-  </div>
-</nav>
-
-<!-- ======================== MAIN ======================== -->
-<main>
-  <div class="wrapper">
-
-    <!-- USER STATUS -->
-    <div id="user-bar" style="margin-top:30px;">
-      <span id="user-greeting">🌸 いらっしゃいませ！Loading...</span>
-      <div class="user-bar-actions" id="user-bar-actions"></div>
-    </div>
-
-    <!-- ────── MENU SECTION ────── -->
-    <section id="menu">
-      <div class="section-label reveal">お品書き · The Menu</div>
-      <div class="section-title reveal">What will you <span>savour</span> today?</div>
-
-      <div class="divider reveal"><div class="divider-icon">🍡</div></div>
-
-      <div class="menu-tabs reveal" id="menu-tabs">
-        <button class="menu-tab active" data-panel="takoyaki">Takoyaki</button>
-        <button class="menu-tab" data-panel="osaka">Osaka Dishes</button>
-        <button class="menu-tab" data-panel="japanese">Japanese Food</button>
-        <button class="menu-tab" data-panel="sides">Sides</button>
-        <button class="menu-tab" data-panel="drinks">Drinks</button>
-        <button class="menu-tab" data-panel="desserts">Desserts</button>
+  <!-- SITE WRAP -->
+  <div class="site-wrap">
+    <!-- NAV -->
+    <nav class="nav" id="main-nav">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-kana">桜居酒屋</span>
+        <span class="nav-logo-dot"></span>
+        <span class="nav-logo-en">Sakura Izakaya</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#deals">Deals</a></li>
+        <li><a href="#merch">Merch</a></li>
+        <li><a href="#orders">Orders</a></li>
+        <li><a href="#info">Info</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="nav-cart" id="nav-cart-btn">
+          🛒 <span>Cart</span>
+          <span class="nav-cart-badge" id="nav-cart-count">0</span>
+        </button>
       </div>
+    </nav>
 
-      <div id="menu-panels"></div>
-    </section>
-
-    <!-- ────── DEALS SECTION ────── -->
-    <section id="deals">
-      <div class="section-label reveal">特別サービス · Specials</div>
-      <div class="section-title reveal">Today's <span>Deals</span></div>
-      <div class="divider reveal"><div class="divider-icon">🎉</div></div>
-      <div class="deals-grid reveal" id="deals-grid"></div>
-    </section>
-
-    <!-- ────── MERCHANDISE SECTION ────── -->
-    <section id="merchandise">
-      <div class="section-label reveal">グッズ · Merchandise</div>
-      <div class="section-title reveal">Bring Sakura <span>Home</span></div>
-      <div class="divider reveal"><div class="divider-icon">🛍️</div></div>
-      <div class="menu-grid reveal" id="merch-grid"></div>
-    </section>
-
-    <!-- ────── ORDERS SECTION ────── -->
-    <section id="orders">
-      <div class="section-label reveal">ご注文履歴 · Order History</div>
-      <div class="section-title reveal">Your <span>Orders</span></div>
-      <div class="divider reveal"><div class="divider-icon">🧾</div></div>
-      <div id="orders-list" class="reveal"></div>
-    </section>
-
-    <!-- ────── ADMIN SECTION ────── -->
-    <section id="admin-section" style="display:none;">
-      <div class="section-label">管理者 · Admin</div>
-      <div class="section-title">Order <span>Management</span></div>
-      <div class="divider"><div class="divider-icon">👑</div></div>
-      <div class="admin-panel" id="admin-panel"></div>
-    </section>
-
-    <!-- ────── INFO SECTION ────── -->
-    <section id="info">
-      <div class="section-label reveal">アクセス · Access</div>
-      <div class="section-title reveal">Find <span>Us</span></div>
-      <div class="divider reveal"><div class="divider-icon">📍</div></div>
-      <div class="info-grid reveal">
-        <div>
-          <div class="info-block-title">Location</div>
-          <div class="info-block-body">
-            🏮 1F, 1600 Namba-One Dori<br>
-            Naniwa-ku, Osaka-shi<br>
-            Osaka 900-001, Japan 🇯🇵<br><br>
-            Tucked near the lively streets of Dotonbori — follow the lanterns and the aroma of grilled skewers.
-          </div>
+    <!-- HERO -->
+    <header class="hero" id="home">
+      <svg class="hero-branch" viewBox="0 0 600 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M580 10C500 80,420 160,360 260C300 360,260 480,220 600C190 680,160 740,140 790" stroke="#c4607a"
+          stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.7" />
+        <path d="M420 160C380 120,320 80,260 60" stroke="#c4607a" stroke-width="2.2" fill="none" stroke-linecap="round"
+          opacity="0.6" />
+        <path d="M380 220C340 200,290 210,240 230" stroke="#c4607a" stroke-width="2" fill="none" stroke-linecap="round"
+          opacity="0.55" />
+        <path d="M340 300C290 270,230 260,180 280" stroke="#c4607a" stroke-width="1.8" fill="none"
+          stroke-linecap="round" opacity="0.5" />
+        <path d="M310 360C350 320,390 300,440 310" stroke="#c4607a" stroke-width="1.6" fill="none"
+          stroke-linecap="round" opacity="0.45" />
+        <path d="M280 430C240 400,200 390,160 400" stroke="#c4607a" stroke-width="1.5" fill="none"
+          stroke-linecap="round" opacity="0.4" />
+        <path d="M260 510C300 480,340 470,380 480" stroke="#c4607a" stroke-width="1.4" fill="none"
+          stroke-linecap="round" opacity="0.38" />
+        <g opacity="0.8">
+          <circle cx="255" cy="58" r="9" fill="#f5c8d4" />
+          <circle cx="238" cy="68" r="6" fill="#e8a0b4" />
+          <circle cx="270" cy="52" r="5" fill="#fce8ee" />
+          <circle cx="243" cy="78" r="4" fill="#f5c8d4" />
+          <circle cx="262" cy="46" r="4" fill="#e8a0b4" />
+          <circle cx="237" cy="228" r="8" fill="#f5c8d4" />
+          <circle cx="220" cy="238" r="5" fill="#e8a0b4" />
+          <circle cx="250" cy="220" r="5" fill="#fce8ee" />
+          <circle cx="228" cy="248" r="4" fill="#f5c8d4" />
+          <circle cx="175" cy="278" r="8" fill="#fce8ee" />
+          <circle cx="160" cy="290" r="5" fill="#f5c8d4" />
+          <circle cx="190" cy="270" r="4" fill="#e8a0b4" />
+          <circle cx="168" cy="300" r="4" fill="#f5c8d4" />
+          <circle cx="443" cy="308" r="7" fill="#fce8ee" />
+          <circle cx="456" cy="298" r="5" fill="#f5c8d4" />
+          <circle cx="432" cy="316" r="4" fill="#e8a0b4" />
+          <circle cx="158" cy="398" r="8" fill="#f5c8d4" />
+          <circle cx="142" cy="408" r="5" fill="#e8a0b4" />
+          <circle cx="172" cy="390" r="4" fill="#fce8ee" />
+          <circle cx="382" cy="478" r="7" fill="#fce8ee" />
+          <circle cx="395" cy="468" r="5" fill="#f5c8d4" />
+          <circle cx="370" cy="488" r="4" fill="#e8a0b4" />
+        </g>
+      </svg>
+      <svg class="hero-branch-left" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 490C60 400,130 310,190 220C240 150,290 90,340 30" stroke="#c4607a" stroke-width="3" fill="none"
+          stroke-linecap="round" opacity="0.6" />
+        <path d="M150 290C110 260,80 230,60 190" stroke="#c4607a" stroke-width="1.8" fill="none" stroke-linecap="round"
+          opacity="0.5" />
+        <path d="M210 210C240 180,270 160,310 155" stroke="#c4607a" stroke-width="1.6" fill="none"
+          stroke-linecap="round" opacity="0.45" />
+        <g opacity="0.75">
+          <circle cx="57" cy="188" r="7" fill="#f5c8d4" />
+          <circle cx="44" cy="198" r="5" fill="#e8a0b4" />
+          <circle cx="68" cy="180" r="4" fill="#fce8ee" />
+          <circle cx="312" cy="153" r="7" fill="#fce8ee" />
+          <circle cx="326" cy="144" r="5" fill="#f5c8d4" />
+          <circle cx="300" cy="162" r="4" fill="#e8a0b4" />
+        </g>
+      </svg>
+      <div class="hero-vert hero-vert-left">大阪の心・花の味</div>
+      <div class="hero-vert hero-vert-right">春の料理・旬の味わい</div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Osaka, Japan · Since the Cherry Blossoms</div>
+        <h1 class="hero-kana">桜居酒屋</h1>
+        <div class="hero-title-en">Sakura Izakaya</div>
+        <div class="hero-divider">
+          <div class="hero-divider-line"></div>
+          <span class="hero-divider-blossom">🌸</span>
+          <div class="hero-divider-line"></div>
         </div>
-        <div>
-          <div class="info-block-title">About Us</div>
-          <div class="info-block-body">
-            We're a small, family-run izakaya built on Osaka's street food spirit — friendly, flavorful, and full of heart. ❤️<br><br>
-            Rooted in the warmth of <em>omotenashi</em> (Japanese hospitality), we welcome you with open arms and hot plates of comfort food. 🌸<br><br>
-            Come for the food 🍢 — stay for the feeling. ✨
-          </div>
+        <p class="hero-tagline">Where Osaka's warmth blooms in every bite.<br>Takoyaki, izakaya classics & the spirit of
+          omotenashi — crafted with heart.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary"
+            onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">🍡 Explore Menu</button>
+          <button class="btn btn-outline" onclick="openAuthModal()">Login · Register</button>
         </div>
       </div>
-    </section>
-
-  </div><!-- /wrapper -->
-</main>
-
-<!-- ======================== FOOTER ======================== -->
-<footer>
-  <div class="wrapper">
-    <div class="footer-kana">桜居酒屋</div>
-    <div class="footer-copy">© 2025 Sakura Izakaya, Osaka · ありがとうございました</div>
-  </div>
-</footer>
-
-<script>
-// ──────────────────────────────────────────
-// DATA
-// ──────────────────────────────────────────
-const storeName = "SAKURA IZAKAYA";
-const adminPassword = "#Osaka2027doriSFO";
-const ADMIN_SECRET = "PISBIND5BBOAIVSV";
-const USERS_KEY = 'izakaya_users';
-const ORDERS_KEY = 'izakaya_orders';
-
-const izakayaMenuData = {
-  "Classic Takoyaki": { price:90, emoji:"🍡", desc:"Osaka's signature street food. Crispy outside, fluffy inside, topped with sauce, mayo, bonito flakes, and seaweed." },
-  "Cheese Takoyaki": { price:120, emoji:"🧀", desc:"Gooey cheese and octopus inside, melty cheese on top." },
-  "Mentaiko Takoyaki": { price:130, emoji:"🌶️", desc:"Spicy pollock roe filling, seaweed, and spicy sauce." },
-  "Spicy Takoyaki": { price:110, emoji:"🔥", desc:"Jalapeños and chili flakes, spicy mayo drizzle." },
-  "Negi Mayo Takoyaki": { price:130, emoji:"🧅", desc:"Green onion and creamy mayo topping." },
-  "Kimchi Takoyaki": { price:135, emoji:"🌶️", desc:"Tangy kimchi meets classic takoyaki." },
-  "Bacon Takoyaki": { price:140, emoji:"🥓", desc:"Smoky bacon bits inside and on top." },
-  "Shrimp/Crab Takoyaki": { price:150, emoji:"🦐", desc:"Real shrimp or crab, tangy sauce." },
-  "Teriyaki Takoyaki": { price:125, emoji:"🍶", desc:"Sweet-savory teriyaki glaze." },
-  "Curry Takoyaki": { price:120, emoji:"🍛", desc:"Japanese curry sauce, mild spice." },
-  "Soy Sauce Takoyaki": { price:115, emoji:"🫙", desc:"Simple, classic shoyu drizzle." },
-  "Okonomiyaki": { price:1100, emoji:"🥢", desc:"Osaka's famous savory pancake with cabbage, pork, bonito flakes, and okonomiyaki sauce." },
-  "Negiyaki": { price:900, emoji:"🧅", desc:"Green onion pancake, soy sauce, beef or pork." },
-  "Kushikatsu": { price:500, emoji:"🍢", desc:"Deep-fried skewers of meat, seafood, and veggies, tangy dipping sauce." },
-  "Yakisoba": { price:700, emoji:"🍜", desc:"Stir-fried noodles with pork, cabbage, sweet-savory sauce, pickled ginger." },
-  "Doteyaki": { price:600, emoji:"🍲", desc:"Beef tendon simmered in miso and mirin, rich umami." },
-  "Horumon": { price:800, emoji:"🔥", desc:"Grilled beef or pork offal, smoky and rich." },
-  "Ikayaki": { price:400, emoji:"🦑", desc:"Grilled whole squid, soy sauce, sliced hot off the grill." },
-  "Default Bento Box": { price:750, emoji:"🍱", desc:"Rice, grilled salmon, pickled radish, grapes, soy sauce, seaweed." },
-  "Gyoza": { price:400, emoji:"🥟", desc:"Crispy pan-fried dumplings stuffed with pork and veggies, dipping sauce." },
-  "Karaage": { price:750, emoji:"🍗", desc:"Juicy Japanese fried chicken, ginger and garlic marinade." },
-  "Ramen": { price:900, emoji:"🍜", desc:"Pork broth, chashu, egg, green onions." },
-  "Sashimi": { price:300, emoji:"🐟", desc:"Fresh raw fish slices, soy sauce and wasabi." },
-  "Soba": { price:700, emoji:"🌾", desc:"Buckwheat noodles, chilled or hot broth." },
-  "Tempura": { price:1000, emoji:"🍤", desc:"Lightly battered fried shrimp and veggies, tentsuyu sauce." },
-  "Udon": { price:800, emoji:"🍲", desc:"Thick wheat noodles, dashi broth, green onions, tempura bits." },
-  "Onigiri": { price:250, emoji:"🍙", desc:"Rice balls, choice of filling (tuna, salmon, plum, etc), wrapped in nori." }
-};
-
-const drinkMenu = [
-  { name:"Sapporo Beer", price:600, alcoholic:true, emoji:"🍺", desc:"Classic Japanese lager, crisp and refreshing." },
-  { name:"Umeshu Plum Wine", price:700, alcoholic:true, emoji:"🍶", desc:"Sweet and tangy plum wine, served chilled." },
-  { name:"Sake (Hot/Cold)", price:800, alcoholic:true, emoji:"🍶", desc:"Traditional rice wine, choose hot or cold." },
-  { name:"Highball (Whisky & Soda)", price:650, alcoholic:true, emoji:"🥃", desc:"Japanese whisky with soda, light and fizzy." },
-  { name:"Shochu Lemon Sour", price:650, alcoholic:true, emoji:"🍋", desc:"Shochu with lemon and soda, tart and refreshing." },
-  { name:"Calpis Soda", price:350, alcoholic:false, emoji:"🥤", desc:"Sweet, milky soda, a Japanese favorite." },
-  { name:"Oolong Tea", price:300, alcoholic:false, emoji:"🍵", desc:"Classic unsweetened Japanese tea." },
-  { name:"Ramune", price:350, alcoholic:false, emoji:"🥤", desc:"Fizzy marble soda, fun and nostalgic." }
-];
-
-const dessertMenu = [
-  { name:"Mochi Ice Cream", price:400, emoji:"🍡", desc:"Chewy mochi filled with ice cream, assorted flavors." },
-  { name:"Dorayaki", price:350, emoji:"🥞", desc:"Sweet pancake sandwich with red bean filling." },
-  { name:"Matcha Pudding", price:380, emoji:"🍵", desc:"Creamy green tea pudding, lightly sweet." },
-  { name:"Seasonal Fruit Plate", price:450, emoji:"🍓", desc:"Fresh, sliced fruit of the season." },
-  { name:"Sakura Mochi Ice Cream", price:350, emoji:"🌸", desc:"Limited-time sakura mochi ice cream." }
-];
-
-const sideMenu = [
-  { name:"Edamame", price:350, emoji:"🌱", desc:"Steamed and salted green soybeans." },
-  { name:"Agedashi Tofu", price:400, emoji:"🍲", desc:"Crispy fried tofu in savory broth." },
-  { name:"Tsukemono", price:300, emoji:"🥒", desc:"Assorted Japanese pickles." },
-  { name:"Seaweed Salad", price:350, emoji:"🥗", desc:"Marinated seaweed with sesame." },
-  { name:"Potato Croquette", price:380, emoji:"🥔", desc:"Crispy breaded mashed potato patty." }
-];
-
-const merchandiseMenu = [
-  { name:"Takoyaki Plushie", price:2500, emoji:"🧸", desc:"Cute takoyaki plushie, perfect for cuddling or display." },
-  { name:"Sakura Mug", price:2200, emoji:"☕", desc:"Ceramic mug with sakura and takoyaki illustration." },
-  { name:"Izakaya T-Shirt", price:3500, emoji:"👕", desc:"Soft cotton tee with takoyaki mascot." },
-  { name:"Tote Bag", price:1600, emoji:"👜", desc:"Reusable tote bag with takoyaki and sakura design." },
-  { name:"Chopsticks + Holder", price:1300, emoji:"🥢", desc:"Set of chopsticks with a cute holder." },
-  { name:"Keychain", price:1300, emoji:"🗝️", desc:"Takoyaki ball keychain." },
-  { name:"Sticker Pack", price:900, emoji:"🏷️", desc:"Pack of cute takoyaki and Osaka stickers." },
-  { name:"Enamel Pin", price:1200, emoji:"📌", desc:"Takoyaki enamel pin for bags or jackets." },
-  { name:"Apron", price:1800, emoji:"👩‍🍳", desc:"Osaka Sakura Izakaya apron, stylish and practical." },
-  { name:"Notebook/Journal", price:1100, emoji:"📓", desc:"Sakura Izakaya themed notebook/journal." },
-  { name:"Phone Case", price:1800, emoji:"📱", desc:"Takoyaki-themed phone case (various models)." },
-  { name:"DIY Sauces Kit", price:2000, emoji:"🧂", desc:"Make your own takoyaki sauces and seasonings at home!" },
-  { name:"Art Print", price:2200, emoji:"🖼️", desc:"Osaka street food art print for your wall." },
-  { name:"Mini Tsutenkaku Tower", price:1500, emoji:"🗼", desc:"Miniature Tsutenkaku tower souvenir." },
-  { name:"Osaka Castle Keychain", price:1000, emoji:"🏯", desc:"Osaka Castle keychain, iconic landmark." },
-  { name:"Osaka Postcard Set", price:800, emoji:"✉️", desc:"Set of 5 Osaka-themed postcards." },
-  { name:"Napkins (Set of 5)", price:700, emoji:"🧻", desc:"Set of 5 themed napkins, reusable and eco-friendly." },
-  { name:"Takoyaki Box (Empty)", price:800, emoji:"📦", desc:"Authentic takoyaki box for your own creations." }
-];
-
-// ──────────────────────────────────────────
-// STATE
-// ──────────────────────────────────────────
-let orders = [];
-let users = [];
-let currentUser = null;
-let cartItems = [];
-let isAdmin = false;
-let selectedPayment = null;
-
-function saveData(key, data) { try { localStorage.setItem(key, JSON.stringify(data)); } catch(e){} }
-function loadData(key) { try { const d=localStorage.getItem(key); return d?JSON.parse(d):[]; } catch(e){ return []; } }
-
-function hashPassword(password) {
-  let hash=0;
-  for(let i=0;i<password.length;i++){ hash=((hash<<5)-hash)+password.charCodeAt(i); hash|=0; }
-  return hash.toString(16);
-}
-
-function generateOrderCode() {
-  const kana=["あ","い","う","え","お","か","き","く","け","こ","さ","し","す","せ","そ","た","ち","つ","て","と"];
-  const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let rest="";
-  for(let i=0;i<11;i++) rest+=chars[Math.floor(Math.random()*chars.length)];
-  return `${kana[Math.floor(Math.random()*kana.length)]}-${rest}`;
-}
-
-// ──────────────────────────────────────────
-// TOAST
-// ──────────────────────────────────────────
-function toast(msg, type='info') {
-  const c=document.getElementById('toast-container');
-  const t=document.createElement('div');
-  t.className=`toast ${type}`;
-  t.textContent=msg;
-  c.appendChild(t);
-  setTimeout(()=>t.remove(), 4200);
-}
-
-// ──────────────────────────────────────────
-// CART
-// ──────────────────────────────────────────
-function getCartSubtotal() { return cartItems.reduce((s,i)=>s+i.price*i.quantity,0); }
-function getCartCount() { return cartItems.reduce((s,i)=>s+i.quantity,0); }
-
-function addToCart(name, price, qty=1, locked=false, custom={}) {
-  let ex=cartItems.find(i=>i.name===name&&i.locked===locked&&JSON.stringify(i.custom)===JSON.stringify(custom));
-  if(ex) ex.quantity+=qty;
-  else cartItems.push({name,price,quantity:qty,locked,custom});
-  toast(`${qty}× ${name} added to cart · ¥${price*qty}`, 'success');
-  renderCart();
-  updateNavCart();
-}
-
-function removeFromCart(idx) {
-  cartItems.splice(idx,1);
-  renderCart(); updateNavCart();
-}
-
-function updateQty(idx, delta) {
-  cartItems[idx].quantity+=delta;
-  if(cartItems[idx].quantity<=0) cartItems.splice(idx,1);
-  renderCart(); updateNavCart();
-}
-
-function updateNavCart() {
-  document.getElementById('nav-cart-count').textContent=getCartCount();
-}
-
-function renderCart() {
-  const list=document.getElementById('cart-items-list');
-  const footer=document.getElementById('cart-footer');
-  const totalDisplay=document.getElementById('cart-total-display');
-
-  if(cartItems.length===0){
-    list.innerHTML=`<div class="empty-state"><span class="empty-state-icon">🛒</span><div class="empty-state-text">Your cart is empty</div></div>`;
-    footer.style.display='none';
-    return;
-  }
-
-  footer.style.display='block';
-  totalDisplay.textContent=`¥${getCartSubtotal().toLocaleString()}`;
-
-  list.innerHTML=cartItems.map((item,i)=>`
-    <div class="cart-item">
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}${item.locked?' 🔒':''}</div>
-        <div class="cart-item-price">¥${item.price.toLocaleString()} each · ¥${(item.price*item.quantity).toLocaleString()}</div>
-        ${item.custom&&item.custom.content?`<div style="font-size:11px;color:rgba(253,245,232,0.4);margin-top:3px;">${item.custom.content}</div>`:''}
+      <div class="scroll-hint">
+        <div class="scroll-hint-line"></div><span>scroll</span>
       </div>
-      <div class="cart-item-qty">
-        ${item.locked?`<span style="font-size:12px;color:rgba(253,245,232,0.35);">fixed</span>`:`
-          <button class="qty-btn" onclick="updateQty(${i},-1)">−</button>
-          <span class="qty-num">${item.quantity}</span>
-          <button class="qty-btn" onclick="updateQty(${i},+1)">+</button>
-        `}
-        <button class="qty-btn" style="color:#e07070;" onclick="removeFromCart(${i})">🗑</button>
-      </div>
-    </div>
-  `).join('');
-}
+    </header>
 
-function openCart() {
-  const overlay=document.getElementById('cart-overlay');
-  overlay.style.display='flex';
-  requestAnimationFrame(()=>overlay.classList.add('open'));
-  renderCart();
-}
-
-function closeCart() {
-  const overlay=document.getElementById('cart-overlay');
-  overlay.classList.remove('open');
-  setTimeout(()=>overlay.style.display='none',350);
-}
-
-document.getElementById('cart-close-btn').addEventListener('click',closeCart);
-document.getElementById('cart-overlay').addEventListener('click',(e)=>{ if(e.target===e.currentTarget)closeCart(); });
-document.getElementById('nav-cart-btn').addEventListener('click',openCart);
-document.getElementById('cart-checkout-btn').addEventListener('click',()=>{ closeCart(); setTimeout(openCheckout,400); });
-
-// ──────────────────────────────────────────
-// CHECKOUT
-// ──────────────────────────────────────────
-function openCheckout() {
-  if(cartItems.length===0){ toast('Your cart is empty','error'); return; }
-  selectedPayment=null;
-  renderCheckout();
-  document.getElementById('checkout-modal').classList.add('open');
-}
-
-function closeCheckout() {
-  document.getElementById('checkout-modal').classList.remove('open');
-}
-
-function renderCheckout() {
-  const subtotal=getCartSubtotal();
-  let discount=0;
-  if(currentUser&&currentUser.email){
-    const prev=orders.filter(o=>o.email===currentUser.email);
-    if(prev.length===0) discount=Math.round(subtotal*0.1);
-  }
-  const total=subtotal-discount;
-
-  document.getElementById('checkout-content').innerHTML=`
-    <div class="form-group">
-      <label class="form-label">Order Summary</label>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:3px;padding:14px;font-size:13px;color:rgba(253,245,232,0.65);">
-        ${cartItems.map(i=>`<div style="display:flex;justify-content:space-between;padding:4px 0;">${i.quantity}× ${i.name}<span style="color:var(--amber);">¥${(i.price*i.quantity).toLocaleString()}</span></div>`).join('')}
-        ${discount?`<div style="display:flex;justify-content:space-between;padding:4px 0;color:#90e090;">First-time 10% discount<span>−¥${discount.toLocaleString()}</span></div>`:''}
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">Delivery Name</label>
-      <input type="text" class="form-input" id="co-name" placeholder="Your name" value="${currentUser?.name||''}">
-    </div>
-
-    ${!currentUser?.email?`
-    <div class="form-group">
-      <label class="form-label">Email (optional, for order tracking)</label>
-      <input type="email" class="form-input" id="co-email" placeholder="your@email.com">
-    </div>`:''}
-
-    <div class="form-group">
-      <label class="form-label">Payment Method</label>
-      <div class="payment-methods">
-        <div class="payment-opt" data-method="card" onclick="selectPayment(this)">
-          <span class="payment-opt-icon">💳</span>Card
-        </div>
-        <div class="payment-opt" data-method="paypay" onclick="selectPayment(this)">
-          <span class="payment-opt-icon">📱</span>PayPay
-        </div>
-        <div class="payment-opt" data-method="cash" onclick="selectPayment(this)">
-          <span class="payment-opt-icon">💴</span>Cash/COD
-        </div>
-      </div>
-    </div>
-
-    <div id="payment-fields"></div>
-
-    <div class="checkout-total-row">
-      <span>Total Due</span>
-      <span class="total-amt">¥${total.toLocaleString()}</span>
-    </div>
-
-    <div style="display:flex;gap:12px;margin-top:16px;">
-      <button class="btn btn-ghost" onclick="closeCheckout()">Cancel</button>
-      <button class="btn btn-primary" style="flex:1;" onclick="confirmOrder(${total},${discount})">Confirm Order</button>
-    </div>
-  `;
-}
-
-function selectPayment(el) {
-  document.querySelectorAll('.payment-opt').forEach(e=>e.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedPayment=el.dataset.method;
-
-  const fields=document.getElementById('payment-fields');
-  if(selectedPayment==='card'){
-    fields.innerHTML=`
-      <div class="form-group">
-        <label class="form-label">Card Number</label>
-        <input type="text" class="form-input" id="card-num" placeholder="1234 5678 9012 3456" maxlength="19"
-          oninput="this.value=this.value.replace(/[^\d\s]/g,'')">
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-        <div class="form-group">
-          <label class="form-label">Expiry</label>
-          <input type="text" class="form-input" id="card-exp" placeholder="MM/YY" maxlength="5">
-        </div>
-        <div class="form-group">
-          <label class="form-label">CVV</label>
-          <input type="text" class="form-input" id="card-cvv" placeholder="123" maxlength="3">
-        </div>
-      </div>
-    `;
-  } else if(selectedPayment==='paypay'){
-    fields.innerHTML=`<div class="form-group"><label class="form-label">PayPay ID</label><input type="text" class="form-input" id="paypay-id" placeholder="Your PayPay ID"></div>`;
-  } else {
-    fields.innerHTML=`<div style="padding:12px 0;font-size:13px;color:rgba(253,245,232,0.5);font-style:italic;">Please pay at the counter or upon delivery.</div>`;
-  }
-}
-
-function confirmOrder(total, discount) {
-  if(!selectedPayment){ toast('Please select a payment method','error'); return; }
-
-  if(selectedPayment==='card'){
-    const num=(document.getElementById('card-num')?.value||'').replace(/\s/g,'');
-    const cvv=document.getElementById('card-cvv')?.value||'';
-    if(!/^\d{16}$/.test(num)||!/^\d{3}$/.test(cvv)){ toast('Invalid card details','error'); return; }
-  } else if(selectedPayment==='paypay'){
-    const id=document.getElementById('paypay-id')?.value||'';
-    if(id.length<3){ toast('Invalid PayPay ID','error'); return; }
-  }
-
-  const name=document.getElementById('co-name')?.value||currentUser?.name||'Guest';
-  const emailField=document.getElementById('co-email');
-  const email=emailField?.value||currentUser?.email||null;
-  const status=selectedPayment==='cash'?'Cash On Delivery':'Pending';
-  const orderCode=generateOrderCode();
-  const subtotal=getCartSubtotal();
-
-  orders.push({ customer:name, email, orderCode, items:[...cartItems], subtotal, discount, total, status, date:new Date().toISOString(), paymentMethod:selectedPayment });
-  saveData(ORDERS_KEY, orders);
-  cartItems=[];
-  renderCart();
-  updateNavCart();
-
-  document.getElementById('checkout-content').innerHTML=`
-    <div class="order-success">
-      <span class="order-success-icon">🌸</span>
-      <div style="font-family:'Shippori Mincho',serif;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(253,245,232,0.6);margin-bottom:8px;">Order Confirmed!</div>
-      <div class="order-success-code">${orderCode}</div>
-      <div style="font-size:14px;color:rgba(253,245,232,0.55);margin:10px 0 24px;">Total: ¥${total.toLocaleString()} · ${status}</div>
-      <div style="color:rgba(253,245,232,0.4);font-style:italic;font-size:14px;margin-bottom:28px;">ありがとうございました！Thank you so much! 🙏</div>
-      <button class="btn btn-primary" onclick="closeCheckout();renderOrderHistory()">View My Orders</button>
-    </div>
-  `;
-  toast(`Order confirmed! Code: ${orderCode}`, 'success');
-  renderOrderHistory();
-}
-
-// ──────────────────────────────────────────
-// AUTH
-// ──────────────────────────────────────────
-let currentAuthTab = 'login';
-
-function openAuthModal() {
-  document.getElementById('auth-modal').classList.add('open');
-  renderAuthTab('login');
-}
-
-function closeAuthModal() { document.getElementById('auth-modal').classList.remove('open'); }
-
-document.getElementById('auth-modal').addEventListener('click',(e)=>{ if(e.target===e.currentTarget)closeAuthModal(); });
-
-document.getElementById('tab-login-btn').addEventListener('click',()=>{ setAuthTab('login'); });
-document.getElementById('tab-register-btn').addEventListener('click',()=>{ setAuthTab('register'); });
-document.getElementById('tab-guest-btn').addEventListener('click',()=>{ setAuthTab('guest'); });
-
-function setAuthTab(tab) {
-  currentAuthTab=tab;
-  document.querySelectorAll('.auth-tab').forEach(el=>el.classList.remove('active'));
-  document.getElementById(`tab-${tab}-btn`).classList.add('active');
-  renderAuthTab(tab);
-}
-
-function renderAuthTab(tab) {
-  const c=document.getElementById('auth-content');
-  if(tab==='login'){
-    c.innerHTML=`
-      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="auth-email" placeholder="your@email.com"></div>
-      <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="auth-password" placeholder="••••••"></div>
-      <button class="btn btn-primary" style="width:100%;margin-top:8px;" onclick="doLogin()">Login</button>
-    `;
-  } else if(tab==='register'){
-    c.innerHTML=`
-      <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-input" id="reg-name" placeholder="Your name"></div>
-      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="reg-email" placeholder="your@email.com"></div>
-      <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="reg-password" placeholder="Min 4 characters"></div>
-      <div class="form-group"><label class="form-label">Age</label><input type="number" class="form-input" id="reg-age" placeholder="Your age" min="1" max="120"></div>
-      <button class="btn btn-primary" style="width:100%;margin-top:8px;" onclick="doRegister()">Create Account</button>
-    `;
-  } else {
-    c.innerHTML=`
-      <div style="text-align:center;padding:20px 0;">
-        <div style="font-size:48px;margin-bottom:16px;">🌸</div>
-        <div style="font-family:'IM Fell DW Pica',serif;font-style:italic;color:rgba(253,245,232,0.65);font-size:16px;margin-bottom:24px;">Welcome, honoured guest!<br>Browse freely and enjoy.</div>
-        <button class="btn btn-primary" onclick="continueAsGuest()">Continue as Guest</button>
-      </div>
-    `;
-  }
-}
-
-function doLogin() {
-  const email=(document.getElementById('auth-email')?.value||'').trim().toLowerCase();
-  const pass=(document.getElementById('auth-password')?.value||'');
-  const user=users.find(u=>u.email===email&&u.password===hashPassword(pass));
-  if(!user){ toast('Invalid credentials','error'); return; }
-  currentUser=user; isAdmin=false;
-  toast(`Welcome back, ${user.name}! 🌸`,'success');
-  closeAuthModal(); updateUserBar(); renderOrderHistory();
-}
-
-function doRegister() {
-  const name=(document.getElementById('reg-name')?.value||'').trim();
-  const email=(document.getElementById('reg-email')?.value||'').trim().toLowerCase();
-  const pass=(document.getElementById('reg-password')?.value||'');
-  const age=parseInt(document.getElementById('reg-age')?.value)||18;
-  if(!name||!email||!pass){ toast('Please fill all fields','error'); return; }
-  if(pass.length<4){ toast('Password too short (min 4 chars)','error'); return; }
-  if(users.find(u=>u.email===email)){ toast('Email already registered','error'); return; }
-  users.push({email,password:hashPassword(pass),name,age});
-  saveData(USERS_KEY,users);
-  currentUser={email,name,age}; isAdmin=false;
-  toast(`Account created! Welcome, ${name}! 🎉`,'success');
-  closeAuthModal(); updateUserBar(); renderOrderHistory();
-}
-
-function continueAsGuest() {
-  currentUser={name:'Guest',age:18,email:null}; isAdmin=false;
-  toast('Browsing as Guest 🍜','info');
-  closeAuthModal(); updateUserBar();
-}
-
-function doAdminLogin() {
-  const pwd=prompt('Admin Password:');
-  if(pwd!==adminPassword){ toast('Wrong admin password','error'); return; }
-  const otp=prompt('DEMO OTP (10-19):');
-  const required=(new Date().getMinutes()%10)+10;
-  if(parseInt(otp)!==required){ toast('Wrong OTP','error'); return; }
-  isAdmin=true;
-  currentUser={name:'CaptainCTO-kun',age:30,email:'admin@izakaya.shop'};
-  toast('👑 Admin access granted!','success');
-  updateUserBar(); renderAdminPanel();
-  document.getElementById('admin-section').style.display='block';
-}
-
-function doLogout() {
-  currentUser={name:'Guest',age:18,email:null}; isAdmin=false; cartItems=[];
-  renderCart(); updateNavCart(); updateUserBar();
-  document.getElementById('admin-section').style.display='none';
-  toast('Logged out. See you soon! 🌸','info');
-}
-
-function updateUserBar() {
-  const greeting=document.getElementById('user-greeting');
-  const actions=document.getElementById('user-bar-actions');
-  if(currentUser?.email){
-    greeting.innerHTML=`🌸 いらっしゃいませ、<strong>${currentUser.name}</strong>-san！${isAdmin?'<span style="color:#c080f0;">👑 Admin</span>':''}`;
-    actions.innerHTML=`
-      <button class="btn btn-ghost btn-sm" onclick="openAuthModal()">Account</button>
-      <button class="btn btn-ghost btn-sm" onclick="doLogout()">Logout</button>
-      ${isAdmin?'':`<button class="btn btn-sm" style="background:rgba(100,60,160,0.2);color:#c080f0;border:1px solid rgba(100,60,160,0.3);" onclick="doAdminLogin()">Admin</button>`}
-    `;
-  } else {
-    greeting.innerHTML=`🌸 いらっしゃいませ！Welcome, Guest-san！`;
-    actions.innerHTML=`
-      <button class="btn btn-primary btn-sm" onclick="openAuthModal()">Login / Register</button>
-      <button class="btn btn-sm" style="background:rgba(100,60,160,0.2);color:#c080f0;border:1px solid rgba(100,60,160,0.3);" onclick="doAdminLogin()">Admin</button>
-    `;
-  }
-}
-
-// ──────────────────────────────────────────
-// MENU RENDERING
-// ──────────────────────────────────────────
-function renderMenuCard(name, price, emoji, desc, extra='') {
-  return `
-    <div class="menu-card">
-      <span class="menu-card-emoji">${emoji}</span>
-      <div class="menu-card-name">${name}</div>
-      <div class="menu-card-desc">${desc}</div>
-      <div class="menu-card-footer">
-        <div class="menu-card-price">¥${price.toLocaleString()} <small>JPY</small></div>
-        ${extra}
-        <button class="btn btn-primary btn-sm" onclick="quickAdd('${name.replace(/'/g,"\\'")}',${price})">+ Add</button>
-      </div>
-    </div>
-  `;
-}
-
-function quickAdd(name, price) {
-  // Age check for alcohol
-  const drink = drinkMenu.find(d=>d.name===name);
-  if(drink?.alcoholic && (currentUser?.age||0)<20){
-    toast('Must be 20+ to order alcoholic drinks in Japan 🍺','error'); return;
-  }
-  addToCart(name, price, 1);
-}
-
-function renderAllMenus() {
-  const panels = document.getElementById('menu-panels');
-
-  // Takoyaki panel
-  const takoyakiItems = ["Classic Takoyaki","Cheese Takoyaki","Mentaiko Takoyaki","Spicy Takoyaki","Negi Mayo Takoyaki","Kimchi Takoyaki","Bacon Takoyaki","Shrimp/Crab Takoyaki","Teriyaki Takoyaki","Curry Takoyaki","Soy Sauce Takoyaki"];
-  const osakaItems = ["Okonomiyaki","Negiyaki","Kushikatsu","Yakisoba","Doteyaki","Horumon","Ikayaki"];
-  const japaneseItems = ["Default Bento Box","Gyoza","Karaage","Ramen","Sashimi","Soba","Tempura","Udon","Onigiri"];
-
-  const takoyakiHTML = `<div class="menu-panel active" id="panel-takoyaki"><div class="menu-grid">${takoyakiItems.map(n=>{ const d=izakayaMenuData[n]; return renderMenuCard(n,d.price,d.emoji,d.desc); }).join('')}</div></div>`;
-  const osakaHTML = `<div class="menu-panel" id="panel-osaka"><div class="menu-grid">${osakaItems.map(n=>{ const d=izakayaMenuData[n]; return renderMenuCard(n,d.price,d.emoji,d.desc); }).join('')}</div></div>`;
-  const japaneseHTML = `<div class="menu-panel" id="panel-japanese"><div class="menu-grid">${japaneseItems.map(n=>{ const d=izakayaMenuData[n]; return renderMenuCard(n,d.price,d.emoji,d.desc); }).join('')}</div></div>`;
-  const sidesHTML = `<div class="menu-panel" id="panel-sides"><div class="menu-grid">${sideMenu.map(i=>renderMenuCard(i.name,i.price,i.emoji,i.desc)).join('')}</div></div>`;
-  const drinksHTML = `<div class="menu-panel" id="panel-drinks"><div class="menu-grid">${drinkMenu.map(i=>renderMenuCard(i.name,i.price,i.emoji,i.desc,i.alcoholic?'<span class="alcoholic-tag">21+</span>':'')).join('')}</div></div>`;
-  const dessertsHTML = `<div class="menu-panel" id="panel-desserts"><div class="menu-grid">${dessertMenu.map(i=>renderMenuCard(i.name,i.price,i.emoji,i.desc)).join('')}</div></div>`;
-
-  panels.innerHTML = takoyakiHTML+osakaHTML+japaneseHTML+sidesHTML+drinksHTML+dessertsHTML;
-
-  // Tab switching
-  document.getElementById('menu-tabs').addEventListener('click',(e)=>{
-    const btn=e.target.closest('.menu-tab');
-    if(!btn) return;
-    document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.menu-panel').forEach(p=>p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(`panel-${btn.dataset.panel}`).classList.add('active');
-  });
-}
-
-function renderDeals() {
-  const dealsData = [
-    { title:"Friends & Family Pack", desc:"30 Takoyaki Balls for just ¥2,400 – that's 11% off! Perfect for sharing.", badge:"Best Value", action:()=>addToCart("Friends & Family Takoyaki Pack (30 Balls)",2400,1,true,{content:"30× Classic Takoyaki"}) },
-    { title:"🎲 Gamble Deal", desc:"19+ only. Spin your luck! Get 1–10 takoyaki at a random price. Are you brave enough?", badge:"19+", action:()=>gambleDeal() },
-    { title:"Combo Meal", desc:"Takoyaki + Drink + Dessert for ¥1,200. The perfect izakaya set.", badge:"Popular", action:()=>addToCart("Combo Meal (Takoyaki + Drink + Dessert)",1200,1,true,{content:"1× Takoyaki, 1× Drink, 1× Dessert"}) },
-    { title:"🍺 Happy Hour Beer", desc:"Sapporo Beer for ¥400 (normally ¥600). Only available 5pm–7pm!", badge:"Limited Hours", action:()=>happyHourDeal() },
-    { title:"🌸 Seasonal Special", desc:"Sakura Mochi Ice Cream for ¥350 – limited time only!", badge:"Seasonal", action:()=>addToCart("Sakura Mochi Ice Cream",350,1,false,{}) },
-    { title:"🏯 Limited Keychain", desc:"Osaka Castle Keychain for ¥500 (normally ¥1,000). While stocks last!", badge:"50% Off", action:()=>addToCart("Osaka Castle Keychain (Limited-Time)",500,1,false,{}) },
-    { title:"📸 Social Media Contest", desc:"Post your meal, tag us, and win a takoyaki plushie! Show your post to staff.", badge:"Win Prizes", action:()=>toast("Post your meal on social media and show staff to enter! 📸",'info') },
-    { title:"🎁 Loyalty Reward", desc:"Buy 5 meals, get 1 free! Tracked by your account. Log in to check progress.", badge:"Members Only", action:()=>checkLoyalty() }
-  ];
-
-  document.getElementById('deals-grid').innerHTML = dealsData.map(d=>`
-    <div class="deal-card">
-      <span class="deal-badge">${d.badge}</span>
-      <div class="deal-card-title">${d.title}</div>
-      <div class="deal-card-desc">${d.desc}</div>
-      <button class="btn btn-sakura btn-sm" onclick="dealActions[${dealsData.indexOf(d)}]()">Claim Deal</button>
-    </div>
-  `).join('');
-
-  window.dealActions=dealsData.map(d=>d.action);
-}
-
-function gambleDeal() {
-  if((currentUser?.age||0)<19){ toast('Must be 19+ for the gamble deal','error'); return; }
-  if(!confirm('Type OK to try your luck!')){ toast('Cancelled','info'); return; }
-  const balls=Math.floor(Math.random()*10)+1;
-  const yen=Math.floor(Math.random()*901)+100;
-  addToCart(`Gamble Deal (${balls} Takoyaki)`,yen,1,true,{balls,price:yen});
-}
-
-function happyHourDeal() {
-  const h=new Date().getHours();
-  if(h>=17&&h<19){ addToCart("Sapporo Beer (Happy Hour)",400,1,false,{}); }
-  else { toast(`Happy Hour is 5pm–7pm (now ${h}:00)`,'error'); }
-}
-
-function checkLoyalty() {
-  if(!currentUser?.email){ toast('Login required for loyalty program','error'); return; }
-  const count=orders.filter(o=>o.email===currentUser.email).length;
-  if(count>=5){ addToCart("Free Meal (Loyalty Reward)",0,1,true,{}); toast("🎁 Free meal unlocked!",'success'); }
-  else { toast(`You have ${count}/5 orders. ${5-count} more to go!`,'info'); }
-}
-
-function renderMerchandise() {
-  document.getElementById('merch-grid').innerHTML = merchandiseMenu.map(i=>renderMenuCard(i.name,i.price,i.emoji,i.desc)).join('');
-}
-
-// ──────────────────────────────────────────
-// ORDER HISTORY
-// ──────────────────────────────────────────
-function renderOrderHistory() {
-  const el=document.getElementById('orders-list');
-  if(!currentUser?.email){
-    el.innerHTML=`<div class="empty-state"><span class="empty-state-icon">🔑</span><div class="empty-state-text">Login to view your order history</div><div style="margin-top:16px;"><button class="btn btn-primary btn-sm" onclick="openAuthModal()">Login / Register</button></div></div>`;
-    return;
-  }
-  const userOrders=orders.filter(o=>o.email===currentUser.email).reverse();
-  if(userOrders.length===0){
-    el.innerHTML=`<div class="empty-state"><span class="empty-state-icon">🧾</span><div class="empty-state-text">No orders yet. Time to eat!</div></div>`;
-    return;
-  }
-  el.innerHTML=userOrders.map(o=>{
-    const statusMap={'Pending':'status-pending','Preparing':'status-preparing','Ready':'status-ready','Completed':'status-completed','Cancelled':'status-cancelled','Cash On Delivery':'status-cod'};
-    const cls=statusMap[o.status]||'status-pending';
-    return `
-      <div class="order-card">
-        <div class="order-card-header">
-          <div>
-            <div class="order-code">${o.orderCode}</div>
-            <div style="font-size:12px;color:rgba(253,245,232,0.4);margin-top:3px;">${new Date(o.date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
-          </div>
-          <span class="order-status ${cls}">${o.status}</span>
-        </div>
-        <div style="font-size:13px;color:rgba(253,245,232,0.55);margin-bottom:12px;">
-          ${o.items.map(i=>`${i.quantity}× ${i.name}`).join(' · ')}
-        </div>
-        <div style="display:flex;justify-content:space-between;font-family:'Noto Serif JP',serif;font-size:15px;">
-          <span style="color:rgba(253,245,232,0.5);">Total</span>
-          <span style="color:var(--amber);">¥${o.total.toLocaleString()}</span>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-// ──────────────────────────────────────────
-// ADMIN PANEL
-// ──────────────────────────────────────────
-function renderAdminPanel() {
-  const panel=document.getElementById('admin-panel');
-  if(orders.length===0){ panel.innerHTML='<div style="color:rgba(253,245,232,0.4);font-style:italic;">No orders yet.</div>'; return; }
-  const statusColors={'Pending':'#e8d060','Preparing':'#60b8e8','Ready':'#60e890','Completed':'#a0a0a0','Cancelled':'#e06060','Cash On Delivery':'var(--sakura)'};
-  const statuses=["Pending","Preparing","Ready","Completed","Cancelled","Cash On Delivery"];
-
-  panel.innerHTML=`
-    <div style="font-family:'Shippori Mincho',serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#c080f0;margin-bottom:16px;">All Orders (${orders.length})</div>
-    ${orders.slice().reverse().map((o,ri)=>{
-      const i=orders.length-1-ri;
-      return `
-        <div style="border:1px solid rgba(100,60,160,0.25);border-radius:4px;padding:16px;margin-bottom:12px;background:rgba(60,20,80,0.15);">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap;gap:8px;">
+    <!-- MAIN -->
+    <main>
+      <div class="container">
+        <!-- USER BAR -->
+        <div class="user-bar" style="margin-top:32px">
+          <div class="user-bar-left" id="user-bar-left">
+            <div class="user-bar-avatar">🌸</div>
             <div>
-              <div style="font-family:'Noto Serif JP',serif;font-size:13px;color:var(--amber);">${o.orderCode}</div>
-              <div style="font-size:12px;color:rgba(253,245,232,0.5);">${o.customer}${o.email?` · ${o.email}`:''}</div>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-              <select onchange="adminUpdateStatus(${i}, this.value)" style="background:#0f0a05;border:1px solid rgba(100,60,160,0.3);color:${statusColors[o.status]||'#fff'};padding:4px 10px;font-size:11px;border-radius:3px;cursor:pointer;font-family:'Shippori Mincho',serif;">
-                ${statuses.map(s=>`<option value="${s}"${s===o.status?' selected':''}>${s}</option>`).join('')}
-              </select>
-              <button onclick="adminDeleteOrder(${i})" style="background:rgba(180,40,40,0.2);border:1px solid rgba(180,40,40,0.3);color:#e07070;font-size:11px;padding:4px 10px;border-radius:3px;cursor:pointer;font-family:'Shippori Mincho',serif;">Delete</button>
+              <span class="user-bar-name" id="user-bar-name">Guest</span>
+              <span class="user-bar-tag" id="user-bar-tag">GUEST</span>
             </div>
           </div>
-          <div style="font-size:12px;color:rgba(253,245,232,0.45);">${o.items.map(it=>`${it.quantity}× ${it.name}`).join(' · ')}</div>
-          <div style="font-size:13px;color:var(--amber);margin-top:8px;">¥${o.total.toLocaleString()} · ${new Date(o.date).toLocaleDateString()}</div>
+          <div class="user-bar-actions" id="user-bar-actions"></div>
         </div>
-      `;
-    }).join('')}
-  `;
-}
 
-function adminUpdateStatus(idx, status) {
-  orders[idx].status=status;
-  saveData(ORDERS_KEY,orders);
-  toast(`Order status updated to: ${status}`,'success');
-  renderAdminPanel(); renderOrderHistory();
-}
+        <!-- MENU SECTION -->
+        <section class="section" id="menu">
+          <div class="section-header reveal">
+            <div class="section-label">お品書き · The Menu</div>
+            <h2 class="section-title">What will you <em>savour</em> today?</h2>
+            <div class="section-kana">春の献立 · Haru no Kondate</div>
+          </div>
+          <div class="menu-tabs reveal reveal-delay-1" id="menu-tabs">
+            <button class="menu-tab active" data-panel="takoyaki">🍡 Takoyaki</button>
+            <button class="menu-tab" data-panel="osaka">Osaka Dishes</button>
+            <button class="menu-tab" data-panel="japanese">Japanese Food</button>
+            <button class="menu-tab" data-panel="sides">Sides</button>
+            <button class="menu-tab" data-panel="drinks">Drinks</button>
+            <button class="menu-tab" data-panel="desserts">Desserts</button>
+          </div>
+          <div id="menu-panels" class="reveal reveal-delay-2"></div>
+        </section>
 
-function adminDeleteOrder(idx) {
-  if(!confirm('Delete this order?')) return;
-  const code=orders[idx].orderCode;
-  orders.splice(idx,1);
-  saveData(ORDERS_KEY,orders);
-  toast(`Order ${code} deleted`,'info');
-  renderAdminPanel(); renderOrderHistory();
-}
+        <!-- DEALS SECTION -->
+        <section class="section" id="deals">
+          <div class="section-header reveal">
+            <div class="section-label">特別サービス · Specials</div>
+            <h2 class="section-title">Today's <em>Deals</em></h2>
+            <div class="section-kana">今日の特典</div>
+          </div>
+          <div class="deals-grid reveal reveal-delay-1" id="deals-grid"></div>
+        </section>
 
-// ──────────────────────────────────────────
-// SAKURA PETAL CANVAS
-// ──────────────────────────────────────────
-(function sakuraPetals(){
-  const canvas=document.getElementById('petals-canvas');
-  const ctx=canvas.getContext('2d');
-  let petals=[];
-  const PETAL_COUNT=22;
+        <!-- MERCHANDISE SECTION -->
+        <section class="section" id="merch">
+          <div class="section-header reveal">
+            <div class="section-label">グッズ · Merchandise</div>
+            <h2 class="section-title">Bring Sakura <em>Home</em></h2>
+            <div class="section-kana">お土産・グッズ</div>
+          </div>
+          <div class="menu-grid reveal reveal-delay-1" id="merch-grid"></div>
+        </section>
 
-  function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-  window.addEventListener('resize',resize); resize();
+        <!-- ORDERS SECTION -->
+        <section class="section" id="orders">
+          <div class="section-header reveal">
+            <div class="section-label">ご注文履歴 · History</div>
+            <h2 class="section-title">Your <em>Orders</em></h2>
+          </div>
+          <div id="orders-list" class="reveal reveal-delay-1"></div>
+        </section>
 
-  function createPetal(){
-    return {
-      x: Math.random()*window.innerWidth,
-      y: -20,
-      r: 3+Math.random()*5,
-      speed: 0.6+Math.random()*1.2,
-      drift: (Math.random()-0.5)*0.8,
-      rot: Math.random()*Math.PI*2,
-      rotSpeed: (Math.random()-0.5)*0.04,
-      opacity: 0.3+Math.random()*0.5,
-      sway: Math.random()*Math.PI*2,
-      swaySpeed: 0.01+Math.random()*0.02,
-      swayAmt: 15+Math.random()*20,
-      color: Math.random()<0.5?'#e8879c':'#f5c8d8'
-    };
-  }
+        <!-- ADMIN SECTION (hidden) -->
+        <section class="section" id="admin-section" style="display:none">
+          <div class="section-header">
+            <div class="section-label">管理者 · Admin</div>
+            <h2 class="section-title">Order <em>Management</em></h2>
+          </div>
+          <div class="admin-wrap" id="admin-panel"></div>
+        </section>
 
-  for(let i=0;i<PETAL_COUNT;i++){
-    const p=createPetal();
-    p.y=Math.random()*window.innerHeight;
-    petals.push(p);
-  }
+        <!-- INFO SECTION -->
+        <section class="section" id="info">
+          <div class="section-header reveal">
+            <div class="section-label">アクセス · Find Us</div>
+            <h2 class="section-title">Visit <em>Sakura</em></h2>
+          </div>
+          <div class="info-grid reveal reveal-delay-1">
+            <div>
+              <div class="info-block-label">Location</div>
+              <div class="info-block-body">🏮 1F, 1600 Namba-One Dori<br>Naniwa-ku, Osaka-shi<br>Osaka 900-001, Japan
+                🇯🇵<br><br>Nestled near the glowing streets of Dotonbori — follow the lanterns and the scent of freshly
+                grilled skewers to find us.</div>
+            </div>
+            <div>
+              <div class="info-block-label">About Us</div>
+              <div class="info-block-body">We are a small, family-run izakaya rooted in Osaka's street food spirit.
+                Every dish is made with care, pride, and a deep love for omotenashi — Japanese hospitality at its
+                finest.<br><br>Come for the food 🍢 — stay for the feeling. ✨</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
 
-  function drawPetal(p){
-    ctx.save();
-    ctx.translate(p.x,p.y);
-    ctx.rotate(p.rot);
-    ctx.globalAlpha=p.opacity;
-    ctx.fillStyle=p.color;
-    ctx.beginPath();
-    ctx.ellipse(0,0,p.r,p.r*0.6,0,0,Math.PI*2);
-    ctx.fill();
-    ctx.restore();
-  }
-
-  function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    petals.forEach(p=>{
-      p.sway+=p.swaySpeed;
-      p.x+=p.drift+Math.sin(p.sway)*0.5;
-      p.y+=p.speed;
-      p.rot+=p.rotSpeed;
-      drawPetal(p);
-      if(p.y>window.innerHeight+20){ Object.assign(p,createPetal()); }
-    });
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-
-// ──────────────────────────────────────────
-// SCROLL REVEAL
-// ──────────────────────────────────────────
-function initScrollReveal(){
-  const observer=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  },{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-}
-
-function scrollToMenu(){ document.getElementById('menu').scrollIntoView({behavior:'smooth',block:'start'}); }
-
-// ──────────────────────────────────────────
-// INIT
-// ──────────────────────────────────────────
-function init(){
-  users=loadData(USERS_KEY);
-  orders=loadData(ORDERS_KEY);
-  currentUser={name:'Guest',age:18,email:null};
-
-  renderAllMenus();
-  renderDeals();
-  renderMerchandise();
-  updateUserBar();
-  renderOrderHistory();
-  initScrollReveal();
-}
-
-window.addEventListener('DOMContentLoaded', init);
-</script>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-kana">桜居酒屋</div>
+      <div class="footer-copy">© 2025 Sakura Izakaya, Osaka · ありがとうございました · Made with 🌸</div>
+    </footer>
+  </div>
+  <script>
+    "use strict"; 
+    const USERS_KEY = 'sakura_users', ORDERS_KEY = 'sakura_orders'; 
+    const izakayaMenu = { 
+    "Classic Takoyaki": { price: 90, emoji: "🍡", desc: "Osaka's signature street food. Crispy outside, fluffy inside, topped with sauce, mayo, bonito flakes, and seaweed." }, 
+    "Cheese Takoyaki": { price: 120, emoji: "🧀", desc: "Gooey cheese and octopus inside, melty cheese on top." }, 
+    "Mentaiko Takoyaki": { price: 130, emoji: "🌶️", desc: "Spicy pollock roe filling, seaweed, and spicy sauce." }, 
+    "Spicy Takoyaki": { price: 110, emoji: "🔥", desc: "Jalapeños and chili flakes, spicy mayo drizzle." }, 
+    "Negi Mayo Takoyaki": { price: 130, emoji: "🧅", desc: "Green onion and creamy mayo topping." }, 
+    "Kimchi Takoyaki": { price: 135, emoji: "🥬", desc: "Tangy kimchi meets classic takoyaki." }, 
+    "Bacon Takoyaki": { price: 140, emoji: "🥓", desc: "Smoky bacon bits inside and on top." }, 
+    "Shrimp/Crab Takoyaki": { price: 150, emoji: "🦐", desc: "Real shrimp or crab, tangy sauce." }, 
+    "Teriyaki Takoyaki": { price: 125, emoji: "🍶", desc: "Sweet-savory teriyaki glaze." }, 
+    "Curry Takoyaki": { price: 120, emoji: "🍛", desc: "Japanese curry sauce, mild spice." }, 
+    "Soy Sauce Takoyaki": { price: 115, emoji: "🫙", desc: "Simple, classic shoyu drizzle." }, 
+    
+    "Okonomiyaki": { price: 1100, emoji: "🥢", desc: "Osaka's famous savory pancake with cabbage, pork, bonito flakes, and okonomiyaki sauce." }, 
+    "Negiyaki": { price: 900, emoji: "🧅", desc: "Green onion pancake with soy sauce, beef or pork." }, 
+    "Kushikatsu": { price: 500, emoji: "🍢", desc: "Deep-fried skewers of meat, seafood, and veggies, tangy dipping sauce." }, 
+    "Yakisoba": { price: 700, emoji: "🍜", desc: "Stir-fried noodles with pork, cabbage, sweet-savory sauce, pickled ginger." }, 
+    "Doteyaki": { price: 600, emoji: "🍲", desc: "Beef tendon simmered in miso and mirin, rich umami." }, 
+    "Horumon": { price: 800, emoji: "🔥", desc: "Grilled beef or pork offal, smoky and rich." }, 
+    "Ikayaki": { price: 400, emoji: "🦑", desc: "Grilled whole squid, soy sauce, sliced hot off the grill." }, 
+    
+    "Default Bento Box": { price: 750, emoji: "🍱", desc: "Rice, grilled salmon, pickled radish, grapes, soy sauce, seaweed." }, 
+    "Gyoza": { price: 400, emoji: "🥟", desc: "Crispy pan-fried dumplings stuffed with pork and veggies, dipping sauce." }, 
+    "Karaage": { price: 750, emoji: "🍗", desc: "Juicy Japanese fried chicken, ginger and garlic marinade." }, "Ramen": { price: 900, emoji: "🍜", desc: "Pork broth, chashu, egg, green onions." }, "Sashimi": { price: 300, emoji: "🐟", desc: "Fresh raw fish slices, soy sauce and wasabi." }, "Soba": { price: 700, emoji: "🌾", desc: "Buckwheat noodles, chilled or hot broth." }, "Tempura": { price: 1000, emoji: "🍤", desc: "Lightly battered fried shrimp and veggies, tentsuyu sauce." }, "Udon": { price: 800, emoji: "🍲", desc: "Thick wheat noodles, dashi broth, green onions, tempura bits." }, "Onigiri": { price: 250, emoji: "🍙", desc: "Rice balls, choice of filling (tuna, salmon, plum), wrapped in nori." } }; const drinkMenu = [{ name: "Sapporo Beer", price: 600, alcoholic: true, emoji: "🍺", desc: "Classic Japanese lager, crisp and refreshing." }, { name: "Umeshu Plum Wine", price: 700, alcoholic: true, emoji: "🍶", desc: "Sweet and tangy plum wine, served chilled." }, { name: "Sake (Hot/Cold)", price: 800, alcoholic: true, emoji: "🍶", desc: "Traditional rice wine, choose hot or cold." }, { name: "Highball", price: 650, alcoholic: true, emoji: "🥃", desc: "Japanese whisky with soda, light and fizzy." }, { name: "Shochu Lemon Sour", price: 650, alcoholic: true, emoji: "🍋", desc: "Shochu with lemon and soda, tart and refreshing." }, { name: "Calpis Soda", price: 350, alcoholic: false, emoji: "🥤", desc: "Sweet, milky soda, a Japanese favourite." }, { name: "Oolong Tea", price: 300, alcoholic: false, emoji: "🍵", desc: "Classic unsweetened Japanese tea." }, { name: "Ramune", price: 350, alcoholic: false, emoji: "🫧", desc: "Fizzy marble soda, fun and nostalgic." }]; const dessertMenu = [{ name: "Mochi Ice Cream", price: 400, emoji: "🍡", desc: "Chewy mochi filled with ice cream, assorted flavors." }, { name: "Dorayaki", price: 350, emoji: "🥞", desc: "Sweet pancake sandwich with red bean filling." }, { name: "Matcha Pudding", price: 380, emoji: "🍵", desc: "Creamy green tea pudding, lightly sweet." }, { name: "Seasonal Fruit Plate", price: 450, emoji: "🍓", desc: "Fresh, sliced fruit of the season." }, { name: "Sakura Mochi Ice Cream", price: 350, emoji: "🌸", desc: "Limited-time sakura mochi ice cream." }]; const sideMenu = [{ name: "Edamame", price: 350, emoji: "🌱", desc: "Steamed and salted green soybeans." }, { name: "Agedashi Tofu", price: 400, emoji: "🍲", desc: "Crispy fried tofu in savory broth." }, { name: "Tsukemono", price: 300, emoji: "🥒", desc: "Assorted Japanese pickles." }, { name: "Seaweed Salad", price: 350, emoji: "🥗", desc: "Marinated seaweed with sesame." }, { name: "Potato Croquette", price: 380, emoji: "🥔", desc: "Crispy breaded mashed potato patty." }]; const merchandiseMenu = [{ name: "Takoyaki Plushie", price: 2500, emoji: "🧸", desc: "Cute takoyaki plushie, perfect for display or cuddling." }, { name: "Sakura Mug", price: 2200, emoji: "☕", desc: "Ceramic mug with sakura and takoyaki illustration." }, { name: "Izakaya T-Shirt", price: 3500, emoji: "👕", desc: "Soft cotton tee with takoyaki mascot." }, { name: "Tote Bag", price: 1600, emoji: "👜", desc: "Reusable tote with takoyaki and sakura design." }, { name: "Chopsticks + Holder", price: 1300, emoji: "🥢", desc: "Set of chopsticks with a cute holder." }, { name: "Keychain", price: 1300, emoji: "🗝️", desc: "Takoyaki ball keychain." }, { name: "Sticker Pack", price: 900, emoji: "🏷️", desc: "Pack of cute takoyaki and Osaka stickers." }, { name: "Enamel Pin", price: 1200, emoji: "📌", desc: "Takoyaki enamel pin for bags or jackets." }, { name: "Apron", price: 1800, emoji: "👩‍🍳", desc: "Osaka Sakura Izakaya apron, stylish and practical." }, { name: "Notebook / Journal", price: 1100, emoji: "📓", desc: "Sakura Izakaya themed notebook." }, { name: "Phone Case", price: 1800, emoji: "📱", desc: "Takoyaki-themed phone case (various models)." }, { name: "DIY Sauces Kit", price: 2000, emoji: "🧂", desc: "Make your own takoyaki sauces and seasonings at home!" }, { name: "Art Print", price: 2200, emoji: "🖼️", desc: "Osaka street food art print for your wall." }, { name: "Mini Tsutenkaku Tower", price: 1500, emoji: "🗼", desc: "Miniature Tsutenkaku tower souvenir." }, { name: "Osaka Castle Keychain", price: 1000, emoji: "🏯", desc: "Osaka Castle keychain, iconic landmark." }, { name: "Osaka Postcard Set", price: 800, emoji: "✉️", desc: "Set of 5 Osaka-themed postcards." }, { name: "Napkins (Set of 5)", price: 700, emoji: "🧻", desc: "Set of 5 themed napkins, reusable and eco-friendly." }, { name: "Takoyaki Box (Empty)", price: 800, emoji: "📦", desc: "Authentic takoyaki box for your own creations." }]; let orders = [], users = [], currentUser = null, cartItems = [], isAdmin = false, selectedPayment = null; const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)) } catch (e) { } }, load = k => { try { const d = localStorage.getItem(k); return d ? JSON.parse(d) : [] } catch (e) { return [] } }; function hashPwd(p) { let h = 0; for (let i = 0; i < p.length; i++) { h = ((h << 5) - h) + p.charCodeAt(i); h |= 0 } return h.toString(16) } function genCode() { const k = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "さ", "し", "す", "た", "ち", "つ", "て", "と", "な", "に"], c = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; let r = ""; for (let i = 0; i < 11; i++)r += c[Math.floor(Math.random() * c.length)]; return `${k[Math.floor(Math.random() * k.length)]}-${r}` } function toast(msg, type = 'info') { const c = document.getElementById('toast-container'), t = document.createElement('div'); t.className = `toast ${type}`; t.innerHTML = `<span>${type === 'success' ? '✓' : type === 'error' ? '✕' : '🌸'}</span> ${msg}`; c.appendChild(t); setTimeout(() => t.remove(), 4200) } function getSubtotal() { return cartItems.reduce((s, i) => s + i.price * i.quantity, 0) } function getCount() { return cartItems.reduce((s, i) => s + i.quantity, 0) } function addToCart(name, price, qty = 1, locked = false, custom = {}) { const existing = cartItems.find(i => i.name === name && i.locked === locked && JSON.stringify(i.custom) === JSON.stringify(custom)); if (existing) existing.quantity += qty; else cartItems.push({ name, price, quantity: qty, locked, custom }); toast(`${qty}× ${name} added · ¥${(price * qty).toLocaleString()}`, 'success'); renderCart(); updateNavCart() } function removeFromCart(i) { cartItems.splice(i, 1); renderCart(); updateNavCart() } function adjustQty(i, delta) { cartItems[i].quantity += delta; if (cartItems[i].quantity <= 0) cartItems.splice(i, 1); renderCart(); updateNavCart() } function updateNavCart() { document.getElementById('nav-cart-count').textContent = getCount() } function getItemEmoji(name) { if (izakayaMenu[name]) return izakayaMenu[name].emoji; const drink = drinkMenu.find(d => d.name === name); if (drink) return drink.emoji; const des = dessertMenu.find(d => d.name === name); if (des) return des.emoji; const side = sideMenu.find(d => d.name === name); if (side) return side.emoji; const merch = merchandiseMenu.find(d => d.name === name); if (merch) return merch.emoji; return '🌸' } function renderCart() { const body = document.getElementById('cart-body'), footer = document.getElementById('cart-footer'), total = document.getElementById('cart-total-display'); if (cartItems.length === 0) { body.innerHTML = '<div class="empty-state"><span class="empty-state-icon">🛒</span><div class="empty-state-text">Your cart is empty</div></div>'; footer.style.display = 'none'; return } footer.style.display = 'block'; total.textContent = `¥${getSubtotal().toLocaleString()}`; body.innerHTML = cartItems.map((item, i) => `<div class="cart-item"><div class="cart-item-icon">${getItemEmoji(item.name)}</div><div class="cart-item-info"><div class="cart-item-name">${item.name}${item.locked ? ' 🔒' : ''}</div><div class="cart-item-price">¥${item.price.toLocaleString()} × ${item.quantity} = ¥${(item.price * item.quantity).toLocaleString()}</div>${item.custom && item.custom.content ? `<div style="font-size:11px;color:var(--ink-ghost);margin-top:2px;font-style:italic">${item.custom.content}</div>` : ''}</div><div class="cart-qty">${item.locked ? '<span style="font-size:11px;color:var(--ink-ghost)">fixed</span>' : `<button class="qty-btn" onclick="adjustQty(${i},-1)">−</button><span class="qty-num">${item.quantity}</span><button class="qty-btn" onclick="adjustQty(${i},+1)">+</button>`}<button class="qty-btn" style="color:#b04040" title="Remove" onclick="removeFromCart(${i})">✕</button></div></div>`).join('') } function openCart() { const o = document.getElementById('cart-overlay'); o.style.display = 'flex'; requestAnimationFrame(() => o.classList.add('open')); renderCart() } function closeCart() { const o = document.getElementById('cart-overlay'); o.classList.remove('open'); setTimeout(() => { o.style.display = 'none' }, 400) } function openModal(id) { document.getElementById(id).classList.add('open') } function closeModal(id) { document.getElementById(id).classList.remove('open') } function openCheckout() { if (!cartItems.length) { toast('Your cart is empty', 'error'); return } selectedPayment = null; buildCheckout(); openModal('checkout-modal') } function buildCheckout() { const subtotal = getSubtotal(); let discount = 0; if (currentUser?.email) { const prev = orders.filter(o => o.email === currentUser.email); if (prev.length === 0) discount = Math.round(subtotal * 0.1) } const total = subtotal - discount; document.getElementById('checkout-body').innerHTML = `<div class="checkout-summary">${cartItems.map(i => `<div class="checkout-line"><span>${i.quantity}× ${i.name}</span><span class="amt">¥${(i.price * i.quantity).toLocaleString()}</span></div>`).join('')}${discount ? `<div class="checkout-line discount"><span>First-time 10% discount</span><span class="amt">−¥${discount.toLocaleString()}</span></div>` : ''}<div class="checkout-total-line"><span style="font-size:13px;font-family:'Zen Kaku Gothic New',sans-serif;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted)">Total Due</span><span class="total-amt">¥${total.toLocaleString()}</span></div></div><div class="form-group"><label class="form-label">Name</label><input class="form-input" id="co-name" type="text" placeholder="Your name" value="${currentUser?.name || ''}"></div>${!currentUser?.email ? '<div class="form-group"><label class="form-label">Email (optional)</label><input class="form-input" id="co-email" type="email" placeholder="your@email.com"></div>' : ''}<div class="form-group"><label class="form-label">Payment Method</label><div class="payment-grid"><div class="payment-opt" data-m="card" onclick="selectPayment(this)"><span class="payment-opt-icon">💳</span>Card</div><div class="payment-opt" data-m="paypay" onclick="selectPayment(this)"><span class="payment-opt-icon">📱</span>PayPay</div><div class="payment-opt" data-m="cash" onclick="selectPayment(this)"><span class="payment-opt-icon">💴</span>Cash/COD</div></div></div><div id="payment-fields"></div><div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap"><button class="btn btn-outline" style="flex:1;justify-content:center" onclick="closeModal('checkout-modal')">Cancel</button><button class="btn btn-primary" style="flex:2;justify-content:center" onclick="confirmOrder(${total},${discount})">Confirm Order 🌸</button></div>` } function selectPayment(el) { document.querySelectorAll('.payment-opt').forEach(e => e.classList.remove('selected')); el.classList.add('selected'); selectedPayment = el.dataset.m; const f = document.getElementById('payment-fields'); if (selectedPayment === 'card') { f.innerHTML = '<div class="form-group"><label class="form-label">Card Number</label><input class="form-input" id="card-num" type="text" placeholder="1234 5678 9012 3456" maxlength="19"></div><div class="form-row"><div class="form-group"><label class="form-label">Expiry</label><input class="form-input" id="card-exp" type="text" placeholder="MM/YY" maxlength="5"></div><div class="form-group"><label class="form-label">CVV</label><input class="form-input" id="card-cvv" type="text" placeholder="123" maxlength="3"></div></div>' } else if (selectedPayment === 'paypay') { f.innerHTML = '<div class="form-group"><label class="form-label">PayPay ID</label><input class="form-input" id="paypay-id" type="text" placeholder="Your PayPay ID"></div>' } else { f.innerHTML = '<div style="padding:12px 0 4px;font-size:13px;color:var(--ink-muted);font-style:italic">Please pay at the counter or upon delivery. 🌸</div>' } } function confirmOrder(total, discount) { if (!selectedPayment) { toast('Please choose a payment method', 'error'); return } if (selectedPayment === 'card') { const num = (document.getElementById('card-num')?.value || '').replace(/\s/g, ''), cvv = (document.getElementById('card-cvv')?.value || ''); if (!/^\d{16}$/.test(num) || !/^\d{3}$/.test(cvv)) { toast('Invalid card details', 'error'); return } } else if (selectedPayment === 'paypay') { if ((document.getElementById('paypay-id')?.value || '').length < 3) { toast('Invalid PayPay ID', 'error'); return } } const name = document.getElementById('co-name')?.value || currentUser?.name || 'Guest', email = document.getElementById('co-email')?.value || currentUser?.email || null, code = genCode(), status = selectedPayment === 'cash' ? 'Cash On Delivery' : 'Pending'; orders.push({ customer: name, email, orderCode: code, items: [...cartItems], subtotal: getSubtotal(), discount, total, status, date: new Date().toISOString(), paymentMethod: selectedPayment }); save(ORDERS_KEY, orders); cartItems = []; renderCart(); updateNavCart(); document.getElementById('checkout-body').innerHTML = `<div class="success-view"><span class="success-icon">🌸</span><div class="success-title">Order Confirmed!</div><div class="success-code">${code}</div><div class="success-sub">Total: ¥${total.toLocaleString()} · ${status}<br>ありがとうございました！Thank you so much! 🙏</div><button class="btn btn-primary" onclick="closeModal('checkout-modal');renderOrders()">View My Orders</button></div>`; toast(`Order confirmed! Code: ${code}`, 'success'); renderOrders() } function openAuthModal() { openModal('auth-modal'); setAuthTab('login') } function setAuthTab(tab) { document.querySelectorAll('.auth-tab').forEach(el => el.classList.remove('active')); document.getElementById(`tab-${tab}-btn`).classList.add('active'); renderAuthTab(tab) } function renderAuthTab(tab) { const c = document.getElementById('auth-content'); if (tab === 'login') { c.innerHTML = '<div class="form-group"><label class="form-label">Email</label><input class="form-input" id="auth-email" type="email" placeholder="your@email.com"></div><div class="form-group"><label class="form-label">Password</label><input class="form-input" id="auth-pass" type="password" placeholder="••••••"></div><button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="doLogin()">Login 🌸</button>' } else if (tab === 'register') { c.innerHTML = '<div class="form-group"><label class="form-label">Name</label><input class="form-input" id="reg-name" type="text" placeholder="Your name"></div><div class="form-group"><label class="form-label">Email</label><input class="form-input" id="reg-email" type="email" placeholder="your@email.com"></div><div class="form-group"><label class="form-label">Password</label><input class="form-input" id="reg-pass" type="password" placeholder="Min 4 characters"></div><div class="form-group"><label class="form-label">Age</label><input class="form-input" id="reg-age" type="number" placeholder="Your age" min="1" max="120"></div><button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="doRegister()">Create Account 🎉</button>' } else { c.innerHTML = '<div style="text-align:center;padding:12px 0 20px"><div style="font-size:52px;margin-bottom:16px">🌸</div><div style="font-style:italic;color:var(--ink-muted);font-size:15px;line-height:1.85;margin-bottom:24px">Welcome, honoured guest.<br>Browse freely and enjoy.</div><button class="btn btn-primary" style="justify-content:center" onclick="continueAsGuest()">Continue as Guest</button></div>' } } function doLogin() { const email = (document.getElementById('auth-email')?.value || '').trim().toLowerCase(), pass = (document.getElementById('auth-pass')?.value || ''), user = users.find(u => u.email === email && u.password === hashPwd(pass)); if (!user) { toast('Invalid credentials', 'error'); return } currentUser = user; isAdmin = false; toast(`Welcome back, ${user.name}! 🌸`, 'success'); closeModal('auth-modal'); updateUserBar(); renderOrders() } function doRegister() { const name = (document.getElementById('reg-name')?.value || '').trim(), email = (document.getElementById('reg-email')?.value || '').trim().toLowerCase(), pass = (document.getElementById('reg-pass')?.value || ''), age = parseInt(document.getElementById('reg-age')?.value) || 18; if (!name || !email || !pass) { toast('Please fill all fields', 'error'); return } if (pass.length < 4) { toast('Password too short (min 4 chars)', 'error'); return } if (users.find(u => u.email === email)) { toast('Email already registered', 'error'); return } users.push({ email, password: hashPwd(pass), name, age }); save(USERS_KEY, users); currentUser = { email, name, age }; isAdmin = false; toast(`Welcome, ${name}! 🎉`, 'success'); closeModal('auth-modal'); updateUserBar(); renderOrders() } function continueAsGuest() { currentUser = { name: 'Guest', age: 18, email: null }; isAdmin = false; toast('Browsing as Guest 🍜', 'info'); closeModal('auth-modal'); updateUserBar() } function doAdminLogin() { const pwd = window.prompt('Admin Password:'); if (pwd !== '#Osaka2027doriSFO') { toast('Wrong admin password', 'error'); return } const otp = window.prompt('DEMO OTP (10–19):'), req = (new Date().getMinutes() % 10) + 10; if (parseInt(otp) !== req) { toast('Wrong OTP', 'error'); return } isAdmin = true; currentUser = { name: 'CaptainCTO-kun', age: 30, email: 'admin@izakaya.shop' }; toast('👑 Admin access granted!', 'success'); updateUserBar(); renderAdminPanel(); document.getElementById('admin-section').style.display = 'block' } function doLogout() { currentUser = { name: 'Guest', age: 18, email: null }; isAdmin = false; cartItems = []; renderCart(); updateNavCart(); updateUserBar(); document.getElementById('admin-section').style.display = 'none'; toast('Logged out. See you soon! 🌸', 'info'); renderOrders() } function updateUserBar() { const nameEl = document.getElementById('user-bar-name'), tagEl = document.getElementById('user-bar-tag'), actionsEl = document.getElementById('user-bar-actions'); nameEl.textContent = currentUser?.name || 'Guest'; tagEl.textContent = isAdmin ? 'ADMIN 👑' : currentUser?.email ? 'MEMBER' : 'GUEST'; tagEl.style.background = isAdmin ? 'rgba(110,48,80,0.12)' : ''; tagEl.style.borderColor = isAdmin ? 'rgba(110,48,80,0.3)' : ''; tagEl.style.color = isAdmin ? '#6e3050' : ''; if (currentUser?.email) { actionsEl.innerHTML = `<button class="btn btn-outline btn-sm" onclick="openAuthModal()">Account</button><button class="btn btn-ghost btn-sm" onclick="doLogout()">Logout</button>${!isAdmin ? '<button class="btn btn-sm" style="background:rgba(110,48,80,0.1);color:#6e3050;border:1px solid rgba(110,48,80,0.2)" onclick="doAdminLogin()">Admin</button>' : ''}` } else { actionsEl.innerHTML = '<button class="btn btn-primary btn-sm" onclick="openAuthModal()">Login · Register</button><button class="btn btn-sm" style="background:rgba(110,48,80,0.1);color:#6e3050;border:1px solid rgba(110,48,80,0.2)" onclick="doAdminLogin()">Admin</button>' } } function menuCard(name, price, emoji, desc, badge = '') { return `<div class="menu-card"><div class="menu-card-top"><span class="menu-card-emoji">${emoji}</span><div class="menu-card-price">¥${price.toLocaleString()} <small>JPY</small></div></div><div class="menu-card-name">${name}</div><div class="menu-card-desc">${desc}</div><div class="menu-card-footer">${badge}<button class="btn btn-primary btn-sm" onclick="quickAdd('${name.replace(/'/g, "\\'").replace(/"/g, '&quot;')}',${price})">+ Add</button></div></div>` } function quickAdd(name, price) { const drink = drinkMenu.find(d => d.name === name); if (drink?.alcoholic && (currentUser?.age || 0) < 20) { toast('Must be 20+ to order alcoholic drinks in Japan', 'error'); return } addToCart(name, price, 1) } function renderAllMenus() { const panels = document.getElementById('menu-panels'), takoyakiKeys = ["Classic Takoyaki", "Cheese Takoyaki", "Mentaiko Takoyaki", "Spicy Takoyaki", "Negi Mayo Takoyaki", "Kimchi Takoyaki", "Bacon Takoyaki", "Shrimp/Crab Takoyaki", "Teriyaki Takoyaki", "Curry Takoyaki", "Soy Sauce Takoyaki"], osakaKeys = ["Okonomiyaki", "Negiyaki", "Kushikatsu", "Yakisoba", "Doteyaki", "Horumon", "Ikayaki"], japaneseKeys = ["Default Bento Box", "Gyoza", "Karaage", "Ramen", "Sashimi", "Soba", "Tempura", "Udon", "Onigiri"]; panels.innerHTML = `<div class="menu-panel active" id="panel-takoyaki"><div class="menu-grid">${takoyakiKeys.map(k => { const d = izakayaMenu[k]; return menuCard(k, d.price, d.emoji, d.desc) }).join('')}</div></div><div class="menu-panel" id="panel-osaka"><div class="menu-grid">${osakaKeys.map(k => { const d = izakayaMenu[k]; return menuCard(k, d.price, d.emoji, d.desc) }).join('')}</div></div><div class="menu-panel" id="panel-japanese"><div class="menu-grid">${japaneseKeys.map(k => { const d = izakayaMenu[k]; return menuCard(k, d.price, d.emoji, d.desc) }).join('')}</div></div><div class="menu-panel" id="panel-sides"><div class="menu-grid">${sideMenu.map(i => menuCard(i.name, i.price, i.emoji, i.desc)).join('')}</div></div><div class="menu-panel" id="panel-drinks"><div class="menu-grid">${drinkMenu.map(i => menuCard(i.name, i.price, i.emoji, i.desc, i.alcoholic ? '<span class="alcoholic-tag">20+ Only</span>' : '')).join('')}</div></div><div class="menu-panel" id="panel-desserts"><div class="menu-grid">${dessertMenu.map(i => menuCard(i.name, i.price, i.emoji, i.desc)).join('')}</div></div>`; document.getElementById('menu-tabs').addEventListener('click', e => { const btn = e.target.closest('.menu-tab'); if (!btn) return; document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active')); btn.classList.add('active'); document.getElementById(`panel-${btn.dataset.panel}`).classList.add('active') }) } const dealsData = [{ badge: "Best Value", title: "Friends & Family Pack", desc: "30 Takoyaki Balls for just ¥2,400 — 11% off! Perfect for sharing around the table.", action: () => addToCart("Family Takoyaki Pack (30 Balls)", 2400, 1, true, { content: "30× Classic Takoyaki" }) }, { badge: "19+ Only", title: "🎲 Gamble Deal", desc: "Brave enough? Spin your luck and get 1–10 takoyaki at a completely random price.", action: () => gambleDeal() }, { badge: "Popular Set", title: "Combo Meal", desc: "Takoyaki + Drink + Dessert for ¥1,200. The perfect izakaya experience in one set.", action: () => addToCart("Combo Meal (Takoyaki + Drink + Dessert)", 1200, 1, true, { content: "1× Takoyaki, 1× Drink, 1× Dessert" }) }, { badge: "5–7pm Only", title: "🍺 Happy Hour Beer", desc: "Sapporo Beer for ¥400 (normally ¥600). Only available between 5pm and 7pm!", action: () => happyHourDeal() }, { badge: "Seasonal 🌸", title: "Sakura Mochi Ice Cream", desc: "Limited-time sakura mochi ice cream for ¥350. Only while spring lasts!", action: () => addToCart("Sakura Mochi Ice Cream", 350, 1, false, {}) }, { badge: "50% Off", title: "🏯 Limited Keychain", desc: "Osaka Castle Keychain for just ¥500 (normally ¥1,000). While stocks last.", action: () => addToCart("Osaka Castle Keychain (Limited-Time)", 500, 1, false, {}) }, { badge: "Win Prizes", title: "📸 Social Media Contest", desc: "Post your meal, tag us online, and show staff for a chance to win a takoyaki plushie!", action: () => toast("Post your meal and show staff to enter! 📸", 'info') }, { badge: "Members Only", title: "🎁 Loyalty Reward", desc: "Buy 5 meals, get 1 free! Loyalty is tracked by your account. Log in to check progress.", action: () => loyaltyDeal() }]; function renderDeals() { document.getElementById('deals-grid').innerHTML = dealsData.map((d, i) => `<div class="deal-card"><span class="deal-badge">${d.badge}</span><div class="deal-title">${d.title}</div><div class="deal-desc">${d.desc}</div><button class="btn btn-outline btn-sm" onclick="window._deals[${i}]()">Claim Deal</button></div>`).join(''); window._deals = dealsData.map(d => d.action) } function gambleDeal() { if ((currentUser?.age || 0) < 19) { toast('Must be 19+ for the gamble deal', 'error'); return } if (!confirm('Are you sure you want to try your luck?')) return; const balls = Math.floor(Math.random() * 10) + 1, yen = Math.floor(Math.random() * 901) + 100; addToCart(`Gamble Deal (${balls} Takoyaki)`, yen, 1, true, { balls, price: yen }) } function happyHourDeal() { const h = new Date().getHours(); if (h >= 17 && h < 19) addToCart("Sapporo Beer (Happy Hour)", 400, 1, false, {}); else toast(`Happy Hour is 5–7pm (it's now ${h}:00)`, 'error') } function loyaltyDeal() { if (!currentUser?.email) { toast('Login required for loyalty program', 'error'); return } const count = orders.filter(o => o.email === currentUser.email).length; if (count >= 5) addToCart("Free Meal (Loyalty Reward)", 0, 1, true, {}); else toast(`${count}/5 orders. ${5 - count} more to go! 🌸`, 'info') } function renderMerch() { document.getElementById('merch-grid').innerHTML = merchandiseMenu.map(i => menuCard(i.name, i.price, i.emoji, i.desc)).join('') } function renderOrders() { const el = document.getElementById('orders-list'); if (!currentUser?.email) { el.innerHTML = '<div class="empty-state"><span class="empty-state-icon">🔑</span><div class="empty-state-text">Login to view your order history</div><div style="margin-top:16px"><button class="btn btn-primary btn-sm" onclick="openAuthModal()">Login · Register</button></div></div>'; return } const myOrders = orders.filter(o => o.email === currentUser.email).reverse(); if (!myOrders.length) { el.innerHTML = '<div class="empty-state"><span class="empty-state-icon">🧾</span><div class="empty-state-text">No orders yet. Time to eat! 🍡</div></div>'; return } const statusClass = s => ({ 'Pending': 'status-pending', 'Preparing': 'status-preparing', 'Ready': 'status-ready', 'Completed': 'status-completed', 'Cancelled': 'status-cancelled', 'Cash On Delivery': 'status-cod' }[s] || 'status-pending'); el.innerHTML = myOrders.map(o => `<div class="order-card"><div class="order-card-header"><div><div class="order-code">${o.orderCode}</div><div class="order-date">${new Date(o.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</div></div><span class="order-status ${statusClass(o.status)}">${o.status}</span></div><div class="order-items-text">${o.items.map(i => `${i.quantity}× ${i.name}`).join(' · ')}</div><div class="order-total-row"><span class="order-total-label">Total</span><span class="order-total-amt">¥${o.total.toLocaleString()}</span></div></div>`).join('') } function renderAdminPanel() { const panel = document.getElementById('admin-panel'); if (!orders.length) { panel.innerHTML = '<div style="color:var(--ink-ghost);font-style:italic">No orders yet.</div>'; return } const statuses = ["Pending", "Preparing", "Ready", "Completed", "Cancelled", "Cash On Delivery"]; panel.innerHTML = `<div style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#6e3050;margin-bottom:20px">All Orders (${orders.length})</div>${[...orders].reverse().map((o, ri) => { const i = orders.length - 1 - ri; return `<div class="admin-order-row"><div><div style="font-family:'Zen Old Mincho',serif;font-size:13px;color:var(--sakura-rich)">${o.orderCode}</div><div style="font-size:12px;color:var(--ink-muted);margin-top:2px">${o.customer}${o.email ? ` · ${o.email}` : ''}</div><div style="font-size:12px;color:var(--ink-ghost);margin-top:3px;font-style:italic">${o.items.map(it => `${it.quantity}× ${it.name}`).join(' · ')}</div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><select class="form-select" style="width:auto;padding:6px 10px;font-size:11px" onchange="adminSetStatus(${i},this.value)">${statuses.map(s => `<option value="${s}"${s === o.status ? ' selected' : ''}>${s}</option>`).join('')}</select><div style="font-family:'Zen Old Mincho',serif;font-size:14px;color:var(--sakura-rich);white-space:nowrap">¥${o.total.toLocaleString()}</div><button class="btn btn-danger btn-sm" onclick="adminDelete(${i})">Delete</button></div></div>` }).join('')}` } function adminSetStatus(i, s) { orders[i].status = s; save(ORDERS_KEY, orders); toast(`Status updated → ${s}`, 'success'); renderAdminPanel(); renderOrders() } function adminDelete(i) { if (!confirm('Delete this order?')) return; const code = orders[i].orderCode; orders.splice(i, 1); save(ORDERS_KEY, orders); toast(`Order ${code} deleted`, 'info'); renderAdminPanel(); renderOrders() } (function initPetals() { const canvas = document.getElementById('petal-canvas'), ctx = canvas.getContext('2d'), resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }; window.addEventListener('resize', resize); resize(); const COLORS = ['#f5c8d4', '#fce8ee', '#e8a0b4', '#f9d8e2', '#fae0ea'], N = 28; function makePetal() { return { x: Math.random() * window.innerWidth, y: -20 - Math.random() * 100, rx: 4 + Math.random() * 5, ry: 2 + Math.random() * 3, rot: Math.random() * Math.PI * 2, rotV: (Math.random() - 0.5) * 0.035, vy: 0.5 + Math.random() * 1.2, vx: (Math.random() - 0.5) * 0.7, sway: Math.random() * Math.PI * 2, swayS: 0.008 + Math.random() * 0.015, swayA: 18 + Math.random() * 22, color: COLORS[Math.floor(Math.random() * COLORS.length)], alpha: 0.4 + Math.random() * 0.45 } } const petals = Array.from({ length: N }, () => { const p = makePetal(); p.y = Math.random() * window.innerHeight; return p }); function draw(p) { ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.globalAlpha = p.alpha; ctx.fillStyle = p.color; for (let k = 0; k < 5; k++) { ctx.save(); ctx.rotate((k / 5) * Math.PI * 2); ctx.beginPath(); ctx.ellipse(0, -p.rx * 1.1, p.ry * 0.8, p.rx, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore() } ctx.beginPath(); ctx.arc(0, 0, p.ry * 0.6, 0, Math.PI * 2); ctx.fillStyle = '#fce8ee'; ctx.fill(); ctx.restore() } (function loop() { ctx.clearRect(0, 0, canvas.width, canvas.height); for (const p of petals) { p.sway += p.swayS; p.x += p.vx + Math.sin(p.sway) * 0.4; p.y += p.vy; p.rot += p.rotV; draw(p); if (p.y > window.innerHeight + 30) Object.assign(p, makePetal()) } requestAnimationFrame(loop) })() })(); function initReveal() { const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target) } }) }, { threshold: 0.1 }); document.querySelectorAll('.reveal').forEach(el => obs.observe(el)) } window.addEventListener('scroll', () => { document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 40) }); document.getElementById('nav-cart-btn').addEventListener('click', openCart); document.getElementById('cart-close-btn').addEventListener('click', closeCart); document.getElementById('cart-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeCart() }); document.getElementById('checkout-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal('checkout-modal') }); document.getElementById('auth-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal('auth-modal') }); document.getElementById('cart-checkout-btn').addEventListener('click', () => { closeCart(); setTimeout(openCheckout, 400) }); document.getElementById('tab-login-btn').addEventListener('click', () => setAuthTab('login')); document.getElementById('tab-register-btn').addEventListener('click', () => setAuthTab('register')); document.getElementById('tab-guest-btn').addEventListener('click', () => setAuthTab('guest')); function init() { users = load(USERS_KEY); orders = load(ORDERS_KEY); currentUser = { name: 'Guest', age: 18, email: null }; renderAllMenus(); renderDeals(); renderMerch(); updateUserBar(); renderOrders(); initReveal() } window.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
+
 </html>
